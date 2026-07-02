@@ -98,7 +98,6 @@ DynamicArray(int initialCapacity); // user-defined capacity
     bool isEmpty() const;  
 };
 **How my dynamic array got created with default constructor and paramettarized constructor**
-![image1]
 ### **Default values:**
 **Size:** 0
 The size is initialized to 0 because it keeps track of the number of elements currently stored in the array. It increases when elements are inserted into the dynamic array.
@@ -445,7 +444,7 @@ arr->{10,20,30,40,50,60,70,80,90,100}
 
 Only one insertion operation is performed, so time complexity is **O(1)**.
 
-![image2]
+
 
 -----
 ### **Average case: O(1) amortized**
@@ -501,9 +500,9 @@ Time taken:
 
 O(n) for copying + O(1) for insertion = O(n)
 
-![image3]
 
-![image4]
+
+
 ## **`get(int index):`**
 This method returns the value stored at the given index.
 
@@ -515,7 +514,7 @@ arr.get(2)
 
 It returns **30** because it is stored at index `2`.
 
-![image5]
+
 
 -----
 ### **How is it able to access the element using an index?**
@@ -645,7 +644,7 @@ Only one insertion.
 
 Time complexity = **O(1)**
 
-![image6]
+
 
 -----
 ## **Average case: O(n)**
@@ -677,7 +676,6 @@ So:
 
 O(n/2 + 1) ≈ O(n)
 
-![image7]
 
 -----
 ## **Worst case: O(n) (not O(n²))**
@@ -744,9 +742,9 @@ Total: o(n+n) o(2n)
 
 O(n)
 
-![image8]
 
-![image9]
+
+
 ## **`void remove(int index):`**
 This method removes the element at the specified index.
 ### **How it works:**
@@ -824,7 +822,7 @@ size = 9
 
 Time complexity = **O(1)**
 
-![image10]
+
 
 -----
 ## **Average case O(n)**
@@ -862,7 +860,7 @@ O(n/2) ≈ O(n)
 
 Z
 
-![image11]
+
 
 -----
 ## **Worst case O(n)**
@@ -892,17 +890,3 @@ arr->{20,30,40,60,70,80,90,\_,\_,\_}
 
 Time complexity = **O(n)**
 
-![image12]
-
-[image1]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.001.png
-[image2]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.002.png
-[image3]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.003.png
-[image4]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.004.png
-[image5]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.005.png
-[image6]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.006.png
-[image7]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.007.png
-[image8]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.008.png
-[image9]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.009.png
-[image10]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.010.png
-[image11]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.011.png
-[image12]: Aspose.Words.b5008f1f-0876-473e-b507-7c725cbbbc33.012.png
