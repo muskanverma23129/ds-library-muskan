@@ -9,6 +9,7 @@ class DynamicArray{
   public:
     DynamicArray();
     DynamicArray(int capacity);
+    ~DynamicArray();
     int getSize();
     int getCapacity();
     void regrow();

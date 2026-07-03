@@ -24,6 +24,15 @@ DynamicArray<T>::DynamicArray(int capacity)
   }
 }
 template<typename T>
+DynamicArray<T>::~DynamicArray(){
+  // std::cout<<"deconstructor got called";
+  for(int i=0;i<this->size;i++){
+    this->arr[i].~T();
+  }
+  free(this->arr);
+  // this->arr=nullptr;
+}
+template<typename T>
 int DynamicArray<T>::getSize(){
   return this->size;
 }
