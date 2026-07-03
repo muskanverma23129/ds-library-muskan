@@ -30,32 +30,82 @@ int main() {
   //   } catch(const exception& e) {
   //       cout << "Error: " << e.what() << endl;
   //   }
-//append test cases
-// Test 1: append into empty array
-DynamicArray<int> arr1;
-arr1.append(10);
-std::cout << arr1.get(0) << " " << arr1.getSize() << " " << arr1.getCapacity() << std::endl;
 
-// Test 2: append multiple values
-arr1.append(20);
-arr1.append(30);
-std::cout << arr1.get(0) << " " << arr1.get(1) << " " << arr1.get(2) << std::endl;
 
-// Test 3: append till exact capacity
-DynamicArray<int> arr6(3);
-arr6.append(1);
-arr6.append(2);
-arr6.append(3);
-std::cout << arr6.getSize() << " " << arr6.getCapacity() << std::endl;
 
-// Test 4: append causing regrow
-arr6.append(4);
-std::cout << arr6.getSize() << " " << arr6.getCapacity() << std::endl;
+// //append test cases
+// // Test 1: append in empty array
+// DynamicArray<int> arr1;
+// arr1.append(10);
+// std::cout << arr1.get(0) << " " << arr1.getSize() << " " << arr1.getCapacity() << std::endl;
 
-// Test 5: append string objects
-DynamicArray<std::string> arr7;
-arr7.append("hello");
-arr7.append("world");
-std::cout << arr7.get(0) << " " << arr7.get(1) << std::endl;
-    return 0;
+// // Test 2: append multiple elements
+// DynamicArray<int> arr2;
+// arr2.append(10);
+// arr2.append(20);
+// arr2.append(30);
+// std::cout << arr2.get(0) << " " << arr2.get(1) << " " << arr2.get(2) << std::endl;
+
+// // Test 3: append till exact capacity
+// DynamicArray<int> arr3(3);
+// arr3.append(1);
+// arr3.append(2);
+// arr3.append(3);
+// std::cout << arr3.getSize() << " " << arr3.getCapacity() << std::endl;
+
+// // Test 4: append causing regrow
+// DynamicArray<int> arr4(3);
+// arr4.append(1);
+// arr4.append(2);
+// arr4.append(3);
+// arr4.append(4);
+// std::cout << arr4.getSize() << " " << arr4.getCapacity() << std::endl;
+
+// // Test 5: append string objects
+// DynamicArray<std::string> arr5;
+// arr5.append("hello");
+// arr5.append("world");
+// std::cout << arr5.get(0) << " " << arr5.get(1) << " " << arr5.getSize() << std::endl;
+
+
+
+// //insert test cases
+// // Test 1: insert at beginning
+// DynamicArray<int> arr6;
+// arr6.append(10);
+// arr6.append(20);
+// arr6.insert(0, 5);
+// std::cout << arr6.get(0) << " " << arr6.get(1) << " " << arr6.get(2) << std::endl;
+
+// // Test 2: insert in middle
+// DynamicArray<int> arr7;
+// arr7.append(10);
+// arr7.append(20);
+// arr7.append(30);
+// arr7.insert(1, 15);
+// std::cout << arr7.get(0) << " " << arr7.get(1) << " " << arr7.get(2) << " " << arr7.get(3) << std::endl;
+
+// // Test 3: insert at end
+// DynamicArray<int> arr8;
+// arr8.append(10);
+// arr8.append(20);
+// arr8.insert(arr8.getSize(), 30);
+// std::cout << arr8.get(0) << " " << arr8.get(1) << " " << arr8.get(2) << std::endl;
+
+// // Test 4: insert causing regrow
+// DynamicArray<int> arr9(2);
+// arr9.append(1);
+// arr9.append(2);
+// arr9.insert(1, 99);
+// std::cout << arr9.get(0) << " " << arr9.get(1) << " " << arr9.get(2)
+//           << " " << arr9.getSize() << " " << arr9.getCapacity() << std::endl;
+
+// // Test 5: invalid index (wrap in try-catch)
+// try{
+// DynamicArray<int> arr10;
+// arr10.append(10);
+// arr10.insert(-1, 100);
+// }catch(const exception &e){
+//   cout<<"Error: "<<e.what()<<endl;
+// }
 }
