@@ -33,6 +33,25 @@ DynamicArray<T>::~DynamicArray(){
   // this->arr=nullptr;
 }
 template<typename T>
+DynamicArray<T>::DynamicArray(const DynamicArray &other){
+  this->size=other.size;
+  this->capacity=other.capacity;
+  if(this->capacity==0){
+    this->arr=nullptr;
+    return;
+  }
+  T* temp=(T*)malloc(sizeof(T)*this->capacity);
+  if(temp==nullptr){
+    throw std::bad_alloc();
+  }
+  this->arr=temp;
+  for(int i=0;i<this->size;i++){
+    new(&this->arr[i])T(other.arr[i]);
+  }
+
+}
+
+template<typename T>
 int DynamicArray<T>::getSize(){
   return this->size;
 }

@@ -10,6 +10,7 @@ class DynamicArray{
     DynamicArray();
     DynamicArray(int capacity);
     ~DynamicArray();
+    DynamicArray(const DynamicArray &other);
     int getSize();
     int getCapacity();
     void regrow();

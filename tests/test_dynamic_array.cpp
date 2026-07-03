@@ -9,10 +9,13 @@ int main(){
   d.append("name");
   d.append("is");
   d.append("john");
-  d.insert(0,"Nic to meet you");
-  d.remove(1);
+  DynamicArray<string> d2=d;
+  d2.insert(4,"max");
   for(int i=0;i<5;i++){
     cout<<d.get(i)<<" ";
+  }
+  for(int i=0;i<5;i++){
+    cout<<d2.get(i)<<" ";
   }
   return 0;
 }
