@@ -464,4 +464,55 @@ int main() {
 // std::cout << arr14.get(0) << " " << arr14.get(1) << " " << arr14.getSize() << std::endl;
 
 // // Expected: 7 8 2
+
+
+
+// // ===== Method: Destructor =====
+
+// // Test 1: normal destruction (scope ends)
+// {
+//     DynamicArray<int> arr15;
+//     arr15.append(10);
+//     arr15.append(20);
+// }
+// // Expected: object destroyed without crash
+
+
+// // Test 2: destroy empty array
+// {
+//     DynamicArray<int> arr16;
+// }
+// // Expected: no crash
+
+
+// // Test 3: destroy string objects
+// {
+//     DynamicArray<std::string> arr17;
+//     arr17.append("hello");
+//     arr17.append("world");
+// }
+// // Expected: string destructors called correctly
+
+
+// // Test 4: destroy after regrow
+// {
+//     DynamicArray<int> arr18;
+//     for(int i=1;i<=15;i++){
+//         arr18.append(i);
+//     }
+// }
+// // Expected: all elements cleaned, no leak
+
+
+// // Test 5: destroy after shrink
+// {
+//     DynamicArray<int> arr19;
+//     for(int i=1;i<=10;i++){
+//         arr19.append(i);
+//     }
+//     for(int i=0;i<8;i++){
+//         arr19.remove(0);
+//     }
+// }
+// // Expected: remaining elements cleaned, no leak
 }
