@@ -23,6 +23,14 @@ DynamicArray<T>::DynamicArray(int capacity)
     throw std::bad_alloc();
   }
 }
+template<typename T>
+int DynamicArray<T>::getSize(){
+  return this->size;
+}
+template<typename T>
+int DynamicArray<T>::getCapacity(){
+  return this->capacity;
+}
 template <typename T>
 void DynamicArray<T>::regrow()
 {
@@ -78,4 +86,34 @@ T DynamicArray<T>::get(int index)
     throw std::out_of_range("index out of range");
   }
   return this->arr[index];
+}
+template<typename T>
+void DynamicArray<T>::insert(int index,T data){ 
+  if(index<0||index>size){
+    throw std::out_of_range("Invalid insert index");
+  }
+  if(size==capacity){
+    if(capacity==0){
+    int newcapacity=10;
+    T* temp=(T*)malloc(sizeof(T)*newcapacity);
+    if(temp==nullptr){
+    throw std::bad_alloc();
+    }else{
+      this->arr=temp;
+      this->capacity=newcapacity;
+    }
+    }else{
+    regrow();
+    }
+  }
+  if(index<size){
+    new(&this->arr[size])T(this->arr[size-1]);
+    for(int i=size-1;i>index;i--){
+      this->arr[i]=this->arr[i-1];
+    }
+     this->arr[index]=data;
+  }else{
+    new(&this->arr[size])T(data);
+  }
+  this->size++;
 }

@@ -9,8 +9,11 @@ class DynamicArray{
   public:
     DynamicArray();
     DynamicArray(int capacity);
+    int getSize();
+    int getCapacity();
     void regrow();
     void append(T data);
+    void insert(int index,T data);
     T get(int index);
 };
 #endif
