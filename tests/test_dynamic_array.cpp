@@ -287,52 +287,114 @@ int main() {
 
 
 
-// ===== Method: getCapacity() =====
+// // ===== Method: getCapacity() =====
 
-// Test 1: default constructor
-DynamicArray<int> arr21;
-std::cout << arr21.getCapacity() << std::endl;
+// // Test 1: default constructor
+// DynamicArray<int> arr21;
+// std::cout << arr21.getCapacity() << std::endl;
 
-// Expected: 0
-
-
-// Test 2: parameterized constructor
-DynamicArray<int> arr22(5);
-std::cout << arr22.getCapacity() << std::endl;
-
-// Expected: 5
+// // Expected: 0
 
 
-// Test 3: after first append (default allocates 10)
-DynamicArray<int> arr23;
-arr23.append(10);
+// // Test 2: parameterized constructor
+// DynamicArray<int> arr22(5);
+// std::cout << arr22.getCapacity() << std::endl;
 
-std::cout << arr23.getCapacity() << std::endl;
-
-// Expected: 10
+// // Expected: 5
 
 
-// Test 4: after regrow
-DynamicArray<int> arr24;
-for(int i=1;i<=11;i++){
-    arr24.append(i);
-}
+// // Test 3: after first append (default allocates 10)
+// DynamicArray<int> arr23;
+// arr23.append(10);
 
-std::cout << arr24.getCapacity() << std::endl;
+// std::cout << arr23.getCapacity() << std::endl;
 
-// Expected: 20
+// // Expected: 10
 
 
-// Test 5: after shrink
-DynamicArray<int> arr25;
-for(int i=1;i<=10;i++){
-    arr25.append(i);
-}
-for(int i=0;i<8;i++){
-    arr25.remove(0);
-}
+// // Test 4: after regrow
+// DynamicArray<int> arr24;
+// for(int i=1;i<=11;i++){
+//     arr24.append(i);
+// }
 
-std::cout << arr25.getCapacity() << std::endl;
+// std::cout << arr24.getCapacity() << std::endl;
 
-// Expected: 5
+// // Expected: 20
+
+
+// // Test 5: after shrink
+// DynamicArray<int> arr25;
+// for(int i=1;i<=10;i++){
+//     arr25.append(i);
+// }
+// for(int i=0;i<8;i++){
+//     arr25.remove(0);
+// }
+
+// std::cout << arr25.getCapacity() << std::endl;
+
+// // Expected: 5
+
+
+
+// ===== Method: Copy Constructor =====
+
+// Test 1: copy empty array
+DynamicArray<int> arr1;
+DynamicArray<int> copy1(arr1);
+
+std::cout << copy1.getSize() << " " << copy1.getCapacity() << std::endl;
+
+// Expected: 0 0
+
+
+// Test 2: copy one element
+DynamicArray<int> arr2;
+arr2.append(10);
+
+DynamicArray<int> copy2(arr2);
+
+std::cout << copy2.get(0) << " " << copy2.getSize() << std::endl;
+
+// Expected: 10 1
+
+
+// Test 3: copy multiple elements
+DynamicArray<int> arr3;
+arr3.append(1);
+arr3.append(2);
+arr3.append(3);
+
+DynamicArray<int> copy3(arr3);
+
+std::cout << copy3.get(0) << " " << copy3.get(1) << " " << copy3.get(2) << std::endl;
+
+// Expected: 1 2 3
+
+
+// Test 4: deep copy check
+DynamicArray<int> arr4;
+arr4.append(10);
+arr4.append(20);
+
+DynamicArray<int> copy4(arr4);
+
+arr4.remove(0); // modify original
+
+std::cout << copy4.get(0) << " " << copy4.get(1) << std::endl;
+
+// Expected: 10 20
+
+
+// Test 5: deep copy address check
+DynamicArray<int> arr5;
+arr5.append(50);
+
+DynamicArray<int> copy5(arr5);
+
+std::cout << &arr5.get(0) << std::endl;
+std::cout << &copy5.get(0) << std::endl;
+
+// Expected: Different addresses
 }
