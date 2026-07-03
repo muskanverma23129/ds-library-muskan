@@ -1,15 +1,16 @@
 #ifndef DYNAMICARRAY_H
 #define DYNAMICARRAY_H
+template<typename T>
 class DynamicArray{
   private:
     int size;
     int capacity;
-    int* arr;
+    T* arr;
   public:
     DynamicArray();
     DynamicArray(int capacity);
     void regrow();
-    void append(int data);
-    int get(int index);
+    void append(T data);
+    T get(int index);
 };
 #endif

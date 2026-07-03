@@ -2,14 +2,15 @@
 #include<new>//for bad_alloc exception
 #include<stdexcept>//for logical error like invalid argument
 #include<cstdlib>//for malloc realloc
-DynamicArray ::DynamicArray()
+template<typename T>
+DynamicArray<T>::DynamicArray()
 {
   this->size = 0;
   this->capacity = 0;
   this->arr = nullptr;
 }
-
-DynamicArray::DynamicArray(int capacity)
+template<typename T>
+DynamicArray<T>::DynamicArray(int capacity)
 {
   if (capacity <= 0)
   {
@@ -17,17 +18,17 @@ DynamicArray::DynamicArray(int capacity)
   }
   this->size = 0;
   this->capacity = capacity;
-  this->arr = (int *)malloc(sizeof(int) * this->capacity);
+  this->arr = (T *)malloc(sizeof(T) * this->capacity);
   if (this->arr == nullptr)
   {
     throw std::bad_alloc();
   }
 }
-
-void DynamicArray::regrow()
+template<typename T>
+void DynamicArray<T>::regrow()
 {
   int newcapacity = 2 * this->capacity;
-  int *temp = (int *)realloc(this->arr,sizeof(int) * newcapacity);
+  T *temp = (T *)realloc(this->arr,sizeof(T) * newcapacity);
   if (temp == nullptr)
   {
     throw std::bad_alloc();
@@ -38,13 +39,13 @@ void DynamicArray::regrow()
     this->capacity = newcapacity;
   }
 }
-
-void DynamicArray::append(int data)
+template<typename T>
+void DynamicArray<T>::append(T data)
 {
   if (this->capacity == 0)
   {
     int newcapacity = 10;
-    this->arr = (int *)malloc(sizeof(int) * newcapacity);
+    this->arr = (T *)malloc(sizeof(T) * newcapacity);
     if (this->arr == nullptr)
     {
       throw std::bad_alloc();
@@ -61,7 +62,8 @@ void DynamicArray::append(int data)
   this->arr[this->size] = data;
   this->size++;
 }
-int DynamicArray::get(int index)
+template<typename T>
+T DynamicArray<T>::get(int index)
 {
   if (index < 0 || index >= size)
   {
