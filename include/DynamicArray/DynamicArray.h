@@ -14,3 +14,4 @@ class DynamicArray{
     T get(int index);
 };
 #endif
+#include "DynamicArray.tpp"

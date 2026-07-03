@@ -1,4 +1,3 @@
-#include "DynamicArray.h"
 #include<new>//for bad_alloc exception
 #include<stdexcept>//for logical error like invalid argument
 #include<cstdlib>//for malloc realloc
