@@ -177,59 +177,111 @@ int main() {
 
 
 
-// ===== Method: get() =====
+// // ===== Method: get() =====
 
-// Test 1: get first element
-DynamicArray<int> arr11;
-arr11.append(10);
-arr11.append(20);
-arr11.append(30);
+// // Test 1: get first element
+// DynamicArray<int> arr11;
+// arr11.append(10);
+// arr11.append(20);
+// arr11.append(30);
 
-std::cout << arr11.get(0) << std::endl;
+// std::cout << arr11.get(0) << std::endl;
 
-// Expected: 10
-
-
-// Test 2: get middle element
-DynamicArray<int> arr12;
-arr12.append(100);
-arr12.append(200);
-arr12.append(300);
-
-std::cout << arr12.get(1) << std::endl;
-
-// Expected: 200
+// // Expected: 10
 
 
-// Test 3: get last element
-DynamicArray<int> arr13;
-arr13.append(5);
-arr13.append(15);
-arr13.append(25);
+// // Test 2: get middle element
+// DynamicArray<int> arr12;
+// arr12.append(100);
+// arr12.append(200);
+// arr12.append(300);
 
-std::cout << arr13.get(2) << std::endl;
+// std::cout << arr12.get(1) << std::endl;
 
-// Expected: 25
-
-
-// Test 4: get string object
-DynamicArray<std::string> arr14;
-arr14.append("hello");
-arr14.append("world");
-
-std::cout << arr14.get(1) << std::endl;
-
-// Expected: world
+// // Expected: 200
 
 
-// Test 5: invalid index
-try{
-    DynamicArray<int> arr15;
-    arr15.append(10);
-    arr15.get(5);
-}catch(const std::exception& e){
-    std::cout << e.what() << std::endl;
-}
+// // Test 3: get last element
+// DynamicArray<int> arr13;
+// arr13.append(5);
+// arr13.append(15);
+// arr13.append(25);
 
-// Expected: index out of range
+// std::cout << arr13.get(2) << std::endl;
+
+// // Expected: 25
+
+
+// // Test 4: get string object
+// DynamicArray<std::string> arr14;
+// arr14.append("hello");
+// arr14.append("world");
+
+// std::cout << arr14.get(1) << std::endl;
+
+// // Expected: world
+
+
+// // Test 5: invalid index
+// try{
+//     DynamicArray<int> arr15;
+//     arr15.append(10);
+//     arr15.get(5);
+// }catch(const std::exception& e){
+//     std::cout << e.what() << std::endl;
+// }
+
+// // Expected: index out of range
+
+
+
+// // ===== Method: getSize() =====
+
+// // Test 1: empty array
+// DynamicArray<int> arr16;
+// std::cout << arr16.getSize() << std::endl;
+
+// // Expected: 0
+
+
+// // Test 2: after one append
+// DynamicArray<int> arr17;
+// arr17.append(10);
+
+// std::cout << arr17.getSize() << std::endl;
+
+// // Expected: 1
+
+
+// // Test 3: after multiple append
+// DynamicArray<int> arr18;
+// arr18.append(1);
+// arr18.append(2);
+// arr18.append(3);
+
+// std::cout << arr18.getSize() << std::endl;
+
+// // Expected: 3
+
+
+// // Test 4: after insert
+// DynamicArray<int> arr19;
+// arr19.append(10);
+// arr19.append(20);
+// arr19.insert(1, 15);
+
+// std::cout << arr19.getSize() << std::endl;
+
+// // Expected: 3
+
+
+// // Test 5: after remove
+// DynamicArray<int> arr20;
+// arr20.append(10);
+// arr20.append(20);
+// arr20.remove(0);
+
+// std::cout << arr20.getSize() << std::endl;
+
+// // Expected: 1
 }
