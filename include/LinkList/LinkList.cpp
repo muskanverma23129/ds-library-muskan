@@ -46,6 +46,22 @@ void LinkList<T>::insertBack(const T& value){
   ++size;
 }
 template<typename T>
+void LinkList<T>::insert(int index,const T& value){
+  Node* newNode=(Node*)malloc(sizeof(Node));
+  if(newNode==nullptr){
+    throw std::bad_alloc();
+  }
+  new(newNode)Node(value);
+  int i=1;
+  Node* temp=head;
+  while(i<index){
+    temp=temp->next;
+    ++i;
+  }
+  newNode->next=temp->next;
+  temp->next=newNode;
+}
+template<typename T>
 void LinkList<T>::print() const{
   Node* temp=head;
   while(temp!=nullptr){
