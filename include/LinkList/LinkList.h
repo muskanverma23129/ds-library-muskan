@@ -20,6 +20,8 @@ class LinkList{
   void insertFront(const T& value);
   void insertBack(const T& value);
   void insert(int index,const T& value);
+  void deleteFront();
+  void deleteBack();
   void print() const;
 };
 #include "LinkList.cpp"

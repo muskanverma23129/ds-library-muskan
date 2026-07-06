@@ -11,5 +11,9 @@ LinkList<string> l;
   l.insertBack("two");
   l.insertBack("three");
   l.insert(1,"1.5");
+  l.insertBack("four");
+  l.insertBack("five");
+  l.deleteBack();
+  l.deleteBack();
   l.print();
 }

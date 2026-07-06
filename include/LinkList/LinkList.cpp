@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include<new>
+#include<stdexcept>
 template <typename T>
 LinkList<T>::LinkList():head(nullptr),tail(nullptr),size(0){}
 template<typename T>
@@ -47,6 +48,17 @@ void LinkList<T>::insertBack(const T& value){
 }
 template<typename T>
 void LinkList<T>::insert(int index,const T& value){
+  if(index<0||index>size){
+    throw std::out_of_range("Invalid Index");
+  }
+  if(index==0){
+    insertFront(value);
+    return;
+  }
+  if(index==size){
+    insertBack(value);
+    return;
+  }
   Node* newNode=(Node*)malloc(sizeof(Node));
   if(newNode==nullptr){
     throw std::bad_alloc();
@@ -60,6 +72,46 @@ void LinkList<T>::insert(int index,const T& value){
   }
   newNode->next=temp->next;
   temp->next=newNode;
+  size++;
+}
+template<typename T>
+void LinkList<T>::deleteFront(){
+  if(size==0){return;}
+  if(size==1){
+    (*head).~Node();
+    free(head);
+    head=nullptr;
+    tail=nullptr;
+    --size;
+    return;
+  }
+  Node* temp=head;
+  head=head->next;
+  (*temp).~Node();
+  free(temp);
+  --size;
+}
+template<typename T>
+void LinkList<T>::deleteBack(){
+  if(size==0){return;}
+  if(size==1){
+    (*tail).~Node();
+    free(tail);
+    head=nullptr;
+    tail=nullptr;
+    --size;
+    return;   
+  }
+  Node* temp=head;
+  while(temp->next->next!=nullptr){
+    temp=temp->next;
+  }
+  Node * temporary=temp->next;
+  tail=temp;
+  tail->next=nullptr;
+  (*temporary).~Node();
+  free(temporary);
+  --size;
 }
 template<typename T>
 void LinkList<T>::print() const{
