@@ -2,14 +2,23 @@
 #include <iostream>
 #include<new>
 template <typename T>
-LinkList<T>::LinkList(){
-  this->head=nullptr;
-  this->tail=nullptr;
-  this->size=0;
+LinkList<T>::LinkList():head(nullptr),tail(nullptr),size(0){}
+template<typename T>
+LinkList<T>::~LinkList(){
+  Node* temp=head;
+  while(temp!=nullptr){
+    Node* temporary=temp;
+    temp=temp->next;
+    (*temporary).~Node();
+    free(temporary);
+  }
 }
 template<typename T>
-void LinkList<T>::insertFront(T value){
+void LinkList<T>::insertFront(const T& value){
   Node* newNode=(Node*)malloc(sizeof(Node));
+  if(newNode==nullptr){
+    throw std::bad_alloc();
+  }
   new(newNode)Node(value);
   if(head==nullptr&&tail==nullptr){ 
     head=newNode;
@@ -18,13 +27,29 @@ void LinkList<T>::insertFront(T value){
     newNode->next=head;
     head=newNode;
   }
-  size++;
+  ++size;
 }
 template<typename T>
-void LinkList<T>::print(){
+void LinkList<T>::insertBack(const T& value){
+    Node* newNode=(Node*)malloc(sizeof(Node));
+  if(newNode==nullptr){
+    throw std::bad_alloc();
+  }
+  new(newNode)Node(value);
+  if(head==nullptr&&tail==nullptr){ 
+    head=newNode;
+    tail=newNode;
+  }else{
+  tail->next=newNode;
+  tail=newNode;
+  }
+  ++size;
+}
+template<typename T>
+void LinkList<T>::print() const{
   Node* temp=head;
   while(temp!=nullptr){
-    std::cout<<temp->data<<" ";
+    std::cout<<temp->data<<"\n";
     temp=temp->next;
   }
 }

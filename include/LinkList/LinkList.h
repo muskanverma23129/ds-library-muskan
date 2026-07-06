@@ -7,7 +7,7 @@ class LinkList{
   struct Node{
     T data;
     Node* next;
-    Node(T data){
+    Node(const T& data){
       this->data=data;
       next=nullptr;
     }
@@ -16,8 +16,10 @@ class LinkList{
   Node* tail;
   public:
   LinkList();
-  void insertFront(T value);
-  void print();
+  ~LinkList();
+  void insertFront(const T& value);
+  void insertBack(const T& value);
+  void print() const;
 };
 #include "LinkList.cpp"
 #endif
