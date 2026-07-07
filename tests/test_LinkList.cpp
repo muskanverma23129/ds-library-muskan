@@ -352,81 +352,163 @@ int main()
 
 
 
-//insert method tested
-// Test Case 1: Insert at front of an empty list
+// //insert method tested
+// // Test Case 1: Insert at front of an empty list
+// {
+//     LinkList<int> list;
+
+//     list.insertFront(10);
+
+//     assert(list.getSize() == 1);
+//     assert(list.getFront() == 10);
+//     assert(list.getBack() == 10);
+
+//     cout << "insertFront Test 1 Passed\n";
+// }
+
+// // Test Case 2: Insert multiple elements at front
+// {
+//     LinkList<int> list;
+
+//     list.insertFront(10);
+//     list.insertFront(20);
+//     list.insertFront(30);
+
+//     assert(list.getSize() == 3);
+//     assert(list.getFront() == 30);
+//     assert(list.getBack() == 10);
+
+//     assert(list.get(0) == 30);
+//     assert(list.get(1) == 20);
+//     assert(list.get(2) == 10);
+
+//     cout << "insertFront Test 2 Passed\n";
+// }
+
+// // Test Case 3: Insert negative values at front
+// {
+//     LinkList<int> list;
+
+//     list.insertFront(-5);
+//     list.insertFront(-10);
+
+//     assert(list.getSize() == 2);
+//     assert(list.getFront() == -10);
+//     assert(list.getBack() == -5);
+
+//     cout << "insertFront Test 3 Passed\n";
+// }
+
+// // Test Case 4: Insert strings at front
+// {
+//     LinkList<string> list;
+
+//     list.insertFront("World");
+//     list.insertFront("Hello");
+
+//     assert(list.getSize() == 2);
+//     assert(list.getFront() == "Hello");
+//     assert(list.getBack() == "World");
+
+//     cout << "insertFront Test 4 Passed\n";
+// }
+
+// // Test Case 5: Large number of insertFront operations
+// {
+//     LinkList<int> list;
+
+//     for(int i = 1; i <= 100; i++)
+//     {
+//         list.insertFront(i);
+//     }
+
+//     assert(list.getSize() == 100);
+//     assert(list.getFront() == 100);
+//     assert(list.getBack() == 1);
+
+//     cout << "insertFront Test 5 Passed\n";
+// }
+
+
+
+// ===============================
+// Method: insertBack()
+// ===============================
+
+// Test Case 1: Insert into an empty list
 {
     LinkList<int> list;
 
-    list.insertFront(10);
+    list.insertBack(10);
 
     assert(list.getSize() == 1);
     assert(list.getFront() == 10);
     assert(list.getBack() == 10);
 
-    cout << "insertFront Test 1 Passed\n";
+    cout << "insertBack Test 1 Passed\n";
 }
 
-// Test Case 2: Insert multiple elements at front
+// Test Case 2: Insert multiple elements at back
 {
     LinkList<int> list;
 
-    list.insertFront(10);
-    list.insertFront(20);
-    list.insertFront(30);
+    list.insertBack(10);
+    list.insertBack(20);
+    list.insertBack(30);
 
     assert(list.getSize() == 3);
-    assert(list.getFront() == 30);
-    assert(list.getBack() == 10);
+    assert(list.getFront() == 10);
+    assert(list.getBack() == 30);
 
-    assert(list.get(0) == 30);
+    assert(list.get(0) == 10);
     assert(list.get(1) == 20);
-    assert(list.get(2) == 10);
+    assert(list.get(2) == 30);
 
-    cout << "insertFront Test 2 Passed\n";
+    cout << "insertBack Test 2 Passed\n";
 }
 
-// Test Case 3: Insert negative values at front
+// Test Case 3: Insert negative values
 {
     LinkList<int> list;
 
-    list.insertFront(-5);
-    list.insertFront(-10);
+    list.insertBack(-10);
+    list.insertBack(-20);
 
     assert(list.getSize() == 2);
     assert(list.getFront() == -10);
-    assert(list.getBack() == -5);
+    assert(list.getBack() == -20);
 
-    cout << "insertFront Test 3 Passed\n";
+    cout << "insertBack Test 3 Passed\n";
 }
 
-// Test Case 4: Insert strings at front
+// Test Case 4: Insert string values
 {
     LinkList<string> list;
 
-    list.insertFront("World");
-    list.insertFront("Hello");
+    list.insertBack("Hello");
+    list.insertBack("World");
 
     assert(list.getSize() == 2);
     assert(list.getFront() == "Hello");
     assert(list.getBack() == "World");
 
-    cout << "insertFront Test 4 Passed\n";
+    cout << "insertBack Test 4 Passed\n";
 }
 
-// Test Case 5: Large number of insertFront operations
+// Test Case 5: Large number of insertions
 {
     LinkList<int> list;
 
-    for(int i = 1; i <= 100; i++)
+    for (int i = 1; i <= 100; i++)
     {
-        list.insertFront(i);
+        list.insertBack(i);
     }
 
     assert(list.getSize() == 100);
-    assert(list.getFront() == 100);
-    assert(list.getBack() == 1);
+    assert(list.getFront() == 1);
+    assert(list.getBack() == 100);
 
-    cout << "insertFront Test 5 Passed\n";
+    cout << "insertBack Test 5 Passed\n";
 }
     return 0;
 }
