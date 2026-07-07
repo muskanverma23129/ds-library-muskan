@@ -1426,31 +1426,106 @@ int main()
 
 
 
+// // ===============================
+// // Method: isEmpty() const
+// // ===============================
+
+// // Test Case 1: Check empty list
+// {
+//     LinkList<int> list;
+
+//     assert(list.isEmpty() == true);
+
+//     cout << "isEmpty() Test 1 Passed\n";
+// }
+
+// // Test Case 2: Check after inserting one element
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+
+//     assert(list.isEmpty() == false);
+
+//     cout << "isEmpty() Test 2 Passed\n";
+// }
+
+// // Test Case 3: Check after inserting multiple elements
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     assert(list.isEmpty() == false);
+
+//     cout << "isEmpty() Test 3 Passed\n";
+// }
+
+// // Test Case 4: Check after deleting all elements
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+
+//     list.deleteFront();
+//     list.deleteFront();
+
+//     assert(list.isEmpty() == true);
+
+//     cout << "isEmpty() Test 4 Passed\n";
+// }
+
+// // Test Case 5: Check after clear()
+// {
+//     LinkList<int> list;
+
+//     for(int i = 0; i < 10; i++)
+//     {
+//         list.insertBack(i);
+//     }
+
+//     list.clear();
+
+//     assert(list.isEmpty() == true);
+
+//     cout << "isEmpty() Test 5 Passed\n";
+// }
+
+
+
 // ===============================
-// Method: isEmpty() const
+// Method: print() const
 // ===============================
 
-// Test Case 1: Check empty list
+// Test Case 1: Print an empty list
 {
     LinkList<int> list;
 
-    assert(list.isEmpty() == true);
+    list.print();
 
-    cout << "isEmpty() Test 1 Passed\n";
+    assert(list.getSize() == 0);
+
+    cout << "print() Test 1 Passed\n";
 }
 
-// Test Case 2: Check after inserting one element
+// Test Case 2: Print a single element list
 {
     LinkList<int> list;
 
     list.insertBack(10);
 
-    assert(list.isEmpty() == false);
+    list.print();
 
-    cout << "isEmpty() Test 2 Passed\n";
+    assert(list.getFront() == 10);
+    assert(list.getBack() == 10);
+
+    cout << "print() Test 2 Passed\n";
 }
 
-// Test Case 3: Check after inserting multiple elements
+// Test Case 3: Print multiple elements
 {
     LinkList<int> list;
 
@@ -1458,40 +1533,50 @@ int main()
     list.insertBack(20);
     list.insertBack(30);
 
-    assert(list.isEmpty() == false);
+    list.print();
 
-    cout << "isEmpty() Test 3 Passed\n";
+    assert(list.getSize() == 3);
+    assert(list.get(0) == 10);
+    assert(list.get(1) == 20);
+    assert(list.get(2) == 30);
+
+    cout << "print() Test 3 Passed\n";
 }
 
-// Test Case 4: Check after deleting all elements
+// Test Case 4: Print after deletion
 {
     LinkList<int> list;
 
     list.insertBack(10);
     list.insertBack(20);
+    list.insertBack(30);
 
     list.deleteFront();
-    list.deleteFront();
+    list.deleteBack();
 
-    assert(list.isEmpty() == true);
+    list.print();
 
-    cout << "isEmpty() Test 4 Passed\n";
+    assert(list.getSize() == 1);
+    assert(list.getFront() == 20);
+
+    cout << "print() Test 4 Passed\n";
 }
 
-// Test Case 5: Check after clear()
+// Test Case 5: Print after clear
 {
     LinkList<int> list;
 
-    for(int i = 0; i < 10; i++)
-    {
-        list.insertBack(i);
-    }
+    list.insertBack(1);
+    list.insertBack(2);
+    list.insertBack(3);
 
     list.clear();
 
-    assert(list.isEmpty() == true);
+    list.print();
 
-    cout << "isEmpty() Test 5 Passed\n";
+    assert(list.isEmpty());
+
+    cout << "print() Test 5 Passed\n";
 }
     return 0;
 }
