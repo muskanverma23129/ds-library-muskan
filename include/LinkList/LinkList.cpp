@@ -275,7 +275,7 @@ const T &LinkList<T>::getBack() const
 template <typename T>
 const T &LinkList<T>::get(int index) const
 {
-  if (index < 0 || index > size)
+  if (index < 0 || index >= size)
   {
     throw std::out_of_range("Invalid Index");
   }
@@ -291,7 +291,7 @@ const T &LinkList<T>::get(int index) const
 template <typename T>
 void LinkList<T>::set(int index, const T &value) 
 {
-  if (index < 0 || index > size)
+  if (index < 0 || index >= size)
   {
     throw std::out_of_range("Invalid Index");
   }
