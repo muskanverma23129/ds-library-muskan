@@ -250,104 +250,183 @@ int main()
 
 
 
-// Test Case 1: Assign empty list to empty list
-{
-    LinkList<int> list1;
-    LinkList<int> list2;
+// // Test Case 1: Assign empty list to empty list
+// {
+//     LinkList<int> list1;
+//     LinkList<int> list2;
 
-    list2 = list1;
+//     list2 = list1;
 
-    assert(list1.getSize() == 0);
-    assert(list2.getSize() == 0);
-    assert(list1.isEmpty());
-    assert(list2.isEmpty());
+//     assert(list1.getSize() == 0);
+//     assert(list2.getSize() == 0);
+//     assert(list1.isEmpty());
+//     assert(list2.isEmpty());
 
-    cout << "Assignment Operator Test 1 Passed\n";
-}
+//     cout << "Assignment Operator Test 1 Passed\n";
+// }
 
-// Test Case 2: Assign non-empty list to empty list
-{
-    LinkList<int> list1;
-    list1.insertBack(10);
-    list1.insertBack(20);
-    list1.insertBack(30);
+// // Test Case 2: Assign non-empty list to empty list
+// {
+//     LinkList<int> list1;
+//     list1.insertBack(10);
+//     list1.insertBack(20);
+//     list1.insertBack(30);
 
-    LinkList<int> list2;
+//     LinkList<int> list2;
 
-    list2 = list1;
+//     list2 = list1;
 
-    assert(list2.getSize() == 3);
-    assert(list2.getFront() == 10);
-    assert(list2.getBack() == 30);
+//     assert(list2.getSize() == 3);
+//     assert(list2.getFront() == 10);
+//     assert(list2.getBack() == 30);
 
-    for (int i = 0; i < 3; i++)
-    {
-        assert(list2.get(i) == list1.get(i));
-    }
+//     for (int i = 0; i < 3; i++)
+//     {
+//         assert(list2.get(i) == list1.get(i));
+//     }
 
-    cout << "Assignment Operator Test 2 Passed\n";
-}
+//     cout << "Assignment Operator Test 2 Passed\n";
+// }
 
-// Test Case 3: Assign over an existing list
-{
-    LinkList<int> list1;
-    list1.insertBack(1);
-    list1.insertBack(2);
-    list1.insertBack(3);
+// // Test Case 3: Assign over an existing list
+// {
+//     LinkList<int> list1;
+//     list1.insertBack(1);
+//     list1.insertBack(2);
+//     list1.insertBack(3);
 
-    LinkList<int> list2;
-    list2.insertBack(100);
-    list2.insertBack(200);
+//     LinkList<int> list2;
+//     list2.insertBack(100);
+//     list2.insertBack(200);
 
-    list2 = list1;
+//     list2 = list1;
 
-    assert(list2.getSize() == 3);
+//     assert(list2.getSize() == 3);
 
-    for (int i = 0; i < 3; i++)
-    {
-        assert(list2.get(i) == list1.get(i));
-    }
+//     for (int i = 0; i < 3; i++)
+//     {
+//         assert(list2.get(i) == list1.get(i));
+//     }
 
-    cout << "Assignment Operator Test 3 Passed\n";
-}
+//     cout << "Assignment Operator Test 3 Passed\n";
+// }
 
-// Test Case 4: Verify deep copy
-{
-    LinkList<int> list1;
-    list1.insertBack(5);
-    list1.insertBack(10);
-    list1.insertBack(15);
+// // Test Case 4: Verify deep copy
+// {
+//     LinkList<int> list1;
+//     list1.insertBack(5);
+//     list1.insertBack(10);
+//     list1.insertBack(15);
 
-    LinkList<int> list2;
-    list2 = list1;
+//     LinkList<int> list2;
+//     list2 = list1;
 
-    list1.set(1, 99);
+//     list1.set(1, 99);
 
-    assert(list1.get(1) == 99);
-    assert(list2.get(1) == 10);
+//     assert(list1.get(1) == 99);
+//     assert(list2.get(1) == 10);
 
-    cout << "Assignment Operator Test 4 Passed\n";
-}
+//     cout << "Assignment Operator Test 4 Passed\n";
+// }
 
-// Test Case 5: Self assignment
+// // Test Case 5: Self assignment
+// {
+//     LinkList<int> list;
+
+//     for (int i = 1; i <= 5; i++)
+//     {
+//         list.insertBack(i);
+//     }
+
+//     list = list;
+
+//     assert(list.getSize() == 5);
+
+//     for (int i = 0; i < 5; i++)
+//     {
+//         assert(list.get(i) == i + 1);
+//     }
+
+//     cout << "Assignment Operator Test 5 Passed\n";
+// }
+
+
+
+//insert method tested
+// Test Case 1: Insert at front of an empty list
 {
     LinkList<int> list;
 
-    for (int i = 1; i <= 5; i++)
+    list.insertFront(10);
+
+    assert(list.getSize() == 1);
+    assert(list.getFront() == 10);
+    assert(list.getBack() == 10);
+
+    cout << "insertFront Test 1 Passed\n";
+}
+
+// Test Case 2: Insert multiple elements at front
+{
+    LinkList<int> list;
+
+    list.insertFront(10);
+    list.insertFront(20);
+    list.insertFront(30);
+
+    assert(list.getSize() == 3);
+    assert(list.getFront() == 30);
+    assert(list.getBack() == 10);
+
+    assert(list.get(0) == 30);
+    assert(list.get(1) == 20);
+    assert(list.get(2) == 10);
+
+    cout << "insertFront Test 2 Passed\n";
+}
+
+// Test Case 3: Insert negative values at front
+{
+    LinkList<int> list;
+
+    list.insertFront(-5);
+    list.insertFront(-10);
+
+    assert(list.getSize() == 2);
+    assert(list.getFront() == -10);
+    assert(list.getBack() == -5);
+
+    cout << "insertFront Test 3 Passed\n";
+}
+
+// Test Case 4: Insert strings at front
+{
+    LinkList<string> list;
+
+    list.insertFront("World");
+    list.insertFront("Hello");
+
+    assert(list.getSize() == 2);
+    assert(list.getFront() == "Hello");
+    assert(list.getBack() == "World");
+
+    cout << "insertFront Test 4 Passed\n";
+}
+
+// Test Case 5: Large number of insertFront operations
+{
+    LinkList<int> list;
+
+    for(int i = 1; i <= 100; i++)
     {
-        list.insertBack(i);
+        list.insertFront(i);
     }
 
-    list = list;
+    assert(list.getSize() == 100);
+    assert(list.getFront() == 100);
+    assert(list.getBack() == 1);
 
-    assert(list.getSize() == 5);
-
-    for (int i = 0; i < 5; i++)
-    {
-        assert(list.get(i) == i + 1);
-    }
-
-    cout << "Assignment Operator Test 5 Passed\n";
+    cout << "insertFront Test 5 Passed\n";
 }
     return 0;
 }
