@@ -18,20 +18,21 @@ class LinkList{
   LinkList();
   ~LinkList();
   LinkList(const LinkList& other);
+  LinkList& operator=(const LinkList& other);
   void insertFront(const T& value);
   void insertBack(const T& value);
   void insert(int index,const T& value);
   void deleteFront();
   void deleteBack();
   void removeAt(int index);
-  bool removeValue(T value);
+  bool removeValue(const T& value);
   void clear();
-  const T& getFront();
-  const T& getBack();
-  const T& get(int index);
+  const T& getFront() const;
+  const T& getBack() const;
+  const T& get(int index) const;
   void set(int index,const T& value);
-  int getSize();
-  bool isEmpty();
+  int getSize() const;
+  bool isEmpty() const;
   void print() const;
 
 };
