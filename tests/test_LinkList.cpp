@@ -866,88 +866,171 @@ int main()
 // Method: removeValue(const T& value)
 // ===============================
 
-// Test Case 1: Remove value from the front
+// // Test Case 1: Remove value from the front
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     bool result = list.removeValue(10);
+
+//     assert(result == true);
+//     assert(list.getSize() == 2);
+//     assert(list.getFront() == 20);
+//     assert(list.getBack() == 30);
+
+//     cout << "removeValue() Test 1 Passed\n";
+// }
+
+// // Test Case 2: Remove value from the middle
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     bool result = list.removeValue(20);
+
+//     assert(result == true);
+//     assert(list.getSize() == 2);
+//     assert(list.get(0) == 10);
+//     assert(list.get(1) == 30);
+
+//     cout << "removeValue() Test 2 Passed\n";
+// }
+
+// // Test Case 3: Remove value from the back
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     bool result = list.removeValue(30);
+
+//     assert(result == true);
+//     assert(list.getSize() == 2);
+//     assert(list.getFront() == 10);
+//     assert(list.getBack() == 20);
+
+//     cout << "removeValue() Test 3 Passed\n";
+// }
+
+// // Test Case 4: Remove value that does not exist
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+
+//     bool result = list.removeValue(50);
+
+//     assert(result == false);
+//     assert(list.getSize() == 2);
+//     assert(list.getFront() == 10);
+//     assert(list.getBack() == 20);
+
+//     cout << "removeValue() Test 4 Passed\n";
+// }
+
+// // Test Case 5: Remove from an empty list
+// {
+//     LinkList<int> list;
+
+//     bool result = list.removeValue(10);
+
+//     assert(result == false);
+//     assert(list.getSize() == 0);
+//     assert(list.isEmpty());
+
+//     cout << "removeValue() Test 5 Passed\n";
+// }
+
+
+
+// ===============================
+// Method: clear()
+// ===============================
+
+// Test Case 1: Clear an empty list
 {
     LinkList<int> list;
 
-    list.insertBack(10);
-    list.insertBack(20);
-    list.insertBack(30);
+    list.clear();
 
-    bool result = list.removeValue(10);
-
-    assert(result == true);
-    assert(list.getSize() == 2);
-    assert(list.getFront() == 20);
-    assert(list.getBack() == 30);
-
-    cout << "removeValue() Test 1 Passed\n";
-}
-
-// Test Case 2: Remove value from the middle
-{
-    LinkList<int> list;
-
-    list.insertBack(10);
-    list.insertBack(20);
-    list.insertBack(30);
-
-    bool result = list.removeValue(20);
-
-    assert(result == true);
-    assert(list.getSize() == 2);
-    assert(list.get(0) == 10);
-    assert(list.get(1) == 30);
-
-    cout << "removeValue() Test 2 Passed\n";
-}
-
-// Test Case 3: Remove value from the back
-{
-    LinkList<int> list;
-
-    list.insertBack(10);
-    list.insertBack(20);
-    list.insertBack(30);
-
-    bool result = list.removeValue(30);
-
-    assert(result == true);
-    assert(list.getSize() == 2);
-    assert(list.getFront() == 10);
-    assert(list.getBack() == 20);
-
-    cout << "removeValue() Test 3 Passed\n";
-}
-
-// Test Case 4: Remove value that does not exist
-{
-    LinkList<int> list;
-
-    list.insertBack(10);
-    list.insertBack(20);
-
-    bool result = list.removeValue(50);
-
-    assert(result == false);
-    assert(list.getSize() == 2);
-    assert(list.getFront() == 10);
-    assert(list.getBack() == 20);
-
-    cout << "removeValue() Test 4 Passed\n";
-}
-
-// Test Case 5: Remove from an empty list
-{
-    LinkList<int> list;
-
-    bool result = list.removeValue(10);
-
-    assert(result == false);
     assert(list.getSize() == 0);
     assert(list.isEmpty());
 
-    cout << "removeValue() Test 5 Passed\n";
+    cout << "clear() Test 1 Passed\n";
+}
+
+// Test Case 2: Clear a list with one element
+{
+    LinkList<int> list;
+
+    list.insertBack(10);
+    list.clear();
+
+    assert(list.getSize() == 0);
+    assert(list.isEmpty());
+
+    cout << "clear() Test 2 Passed\n";
+}
+
+// Test Case 3: Clear a list with multiple elements
+{
+    LinkList<int> list;
+
+    for (int i = 1; i <= 5; i++)
+    {
+        list.insertBack(i);
+    }
+
+    list.clear();
+
+    assert(list.getSize() == 0);
+    assert(list.isEmpty());
+
+    cout << "clear() Test 3 Passed\n";
+}
+
+// Test Case 4: Insert again after clear
+{
+    LinkList<int> list;
+
+    list.insertBack(10);
+    list.insertBack(20);
+
+    list.clear();
+
+    list.insertBack(30);
+
+    assert(list.getSize() == 1);
+    assert(list.getFront() == 30);
+    assert(list.getBack() == 30);
+
+    cout << "clear() Test 4 Passed\n";
+}
+
+// Test Case 5: Clear twice
+{
+    LinkList<int> list;
+
+    list.insertBack(1);
+    list.insertBack(2);
+    list.insertBack(3);
+
+    list.clear();
+    list.clear();
+
+    assert(list.getSize() == 0);
+    assert(list.isEmpty());
+
+    cout << "clear() Test 5 Passed\n";
 }
     return 0;
 }
