@@ -13,6 +13,6 @@ LinkList<string> l;
   l.insert(1,"1.5");
   l.insertBack("four");
   l.insertBack("five");
- cout<<l.removeValue("two");
+ l.clear();
   l.print();
 }

@@ -153,7 +153,6 @@ bool LinkList<T>::removeValue(T value){
     deleteFront();
     return true;
   }
-  int i=1;
   while(temp!=nullptr){
     if(temp->next!=nullptr&&temp->next->data==value){
       // if(i==size-1){
@@ -171,7 +170,6 @@ bool LinkList<T>::removeValue(T value){
       return true;
     }
     temp=temp->next;
-    ++i;
   }
   return false;
 }
@@ -191,6 +189,7 @@ void LinkList<T>::clear(){
 template<typename T>
 void LinkList<T>::print() const{
   Node* temp=head;
+  if(head==nullptr)std::cout<<"List is empty\n";
   while(temp!=nullptr){
     std::cout<<temp->data<<"\n";
     temp=temp->next;
