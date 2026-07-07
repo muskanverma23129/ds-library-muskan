@@ -26,7 +26,8 @@ class LinkList{
   bool removeValue(T value);
   void clear();
   const T& getFront();
-  // const T& getBack();
+  const T& getBack();
+  const T& get(int index);
   void print() const;
 
 };

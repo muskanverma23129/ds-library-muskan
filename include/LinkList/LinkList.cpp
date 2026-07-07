@@ -192,6 +192,21 @@ const T& LinkList<T>::getFront(){
   return head->data;
 }
 template<typename T>
+const T& LinkList<T>::getBack(){
+  if(head==nullptr)throw std::out_of_range("List is empty");
+  return tail->data;
+}
+template<typename T>
+const T& LinkList<T>::get(int index){
+  int i=0;
+  Node* temp=head;
+  while(i<index){
+    temp=temp->next;
+    ++i;
+  }
+ return temp->data;
+}
+template<typename T>
 void LinkList<T>::print() const{
   Node* temp=head;
   if(head==nullptr)std::cout<<"List is empty\n";
