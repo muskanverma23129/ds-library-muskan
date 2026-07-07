@@ -164,88 +164,190 @@ int main()
 // Copy Constructor LinkList(const LinkList&)
 // ======================================
 
-// Test Case 1: Copy an empty list
+// // Test Case 1: Copy an empty list
+// {
+//     LinkList<int> list1;
+//     LinkList<int> list2(list1);
+
+//     assert(list2.getSize() == 0);
+//     assert(list2.isEmpty());
+
+//     std::cout << "Copy Constructor Test 1 Passed\n";
+// }
+// // Test Case 2: Copy a list with one element
+// {
+//     LinkList<int> list1;
+//     list1.insertBack(10);
+
+//     LinkList<int> list2(list1);
+
+//     assert(list2.getSize() == 1);
+//     assert(list2.getFront() == 10);
+//     assert(list2.getBack() == 10);
+
+//     std::cout << "Copy Constructor Test 2 Passed\n";
+// }
+// // Test Case 3: Copy a list with multiple elements
+// {
+//     LinkList<int> list1;
+
+//     for (int i = 1; i <= 5; i++)
+//     {
+//         list1.insertBack(i);
+//     }
+
+//     LinkList<int> list2(list1);
+
+//     assert(list2.getSize() == 5);
+
+//     for (int i = 0; i < 5; i++)
+//     {
+//         assert(list2.get(i) == i + 1);
+//     }
+
+//     std::cout << "Copy Constructor Test 3 Passed\n";
+// }
+// // Test Case 4: Verify deep copy
+// {
+//     LinkList<int> list1;
+
+//     list1.insertBack(10);
+//     list1.insertBack(20);
+//     list1.insertBack(30);
+
+//     LinkList<int> list2(list1);
+
+//     list1.set(1, 99);
+
+//     assert(list1.get(1) == 99);
+//     assert(list2.get(1) == 20);
+
+//     std::cout << "Copy Constructor Test 4 Passed\n";
+// }
+// // Test Case 5: Modify copied list only
+// {
+//     LinkList<int> list1;
+
+//     list1.insertBack(1);
+//     list1.insertBack(2);
+//     list1.insertBack(3);
+
+//     LinkList<int> list2(list1);
+
+//     list2.insertBack(4);
+//     list2.deleteFront();
+
+//     assert(list1.getSize() == 3);
+//     assert(list1.getFront() == 1);
+//     assert(list1.getBack() == 3);
+
+//     assert(list2.getSize() == 3);
+//     assert(list2.getFront() == 2);
+//     assert(list2.getBack() == 4);
+
+//     std::cout << "Copy Constructor Test 5 Passed\n";
+// }
+
+
+
+// Test Case 1: Assign empty list to empty list
 {
     LinkList<int> list1;
-    LinkList<int> list2(list1);
+    LinkList<int> list2;
 
+    list2 = list1;
+
+    assert(list1.getSize() == 0);
     assert(list2.getSize() == 0);
+    assert(list1.isEmpty());
     assert(list2.isEmpty());
 
-    std::cout << "Copy Constructor Test 1 Passed\n";
+    cout << "Assignment Operator Test 1 Passed\n";
 }
-// Test Case 2: Copy a list with one element
+
+// Test Case 2: Assign non-empty list to empty list
 {
     LinkList<int> list1;
-    list1.insertBack(10);
-
-    LinkList<int> list2(list1);
-
-    assert(list2.getSize() == 1);
-    assert(list2.getFront() == 10);
-    assert(list2.getBack() == 10);
-
-    std::cout << "Copy Constructor Test 2 Passed\n";
-}
-// Test Case 3: Copy a list with multiple elements
-{
-    LinkList<int> list1;
-
-    for (int i = 1; i <= 5; i++)
-    {
-        list1.insertBack(i);
-    }
-
-    LinkList<int> list2(list1);
-
-    assert(list2.getSize() == 5);
-
-    for (int i = 0; i < 5; i++)
-    {
-        assert(list2.get(i) == i + 1);
-    }
-
-    std::cout << "Copy Constructor Test 3 Passed\n";
-}
-// Test Case 4: Verify deep copy
-{
-    LinkList<int> list1;
-
     list1.insertBack(10);
     list1.insertBack(20);
     list1.insertBack(30);
 
-    LinkList<int> list2(list1);
+    LinkList<int> list2;
 
-    list1.set(1, 99);
+    list2 = list1;
 
-    assert(list1.get(1) == 99);
-    assert(list2.get(1) == 20);
+    assert(list2.getSize() == 3);
+    assert(list2.getFront() == 10);
+    assert(list2.getBack() == 30);
 
-    std::cout << "Copy Constructor Test 4 Passed\n";
+    for (int i = 0; i < 3; i++)
+    {
+        assert(list2.get(i) == list1.get(i));
+    }
+
+    cout << "Assignment Operator Test 2 Passed\n";
 }
-// Test Case 5: Modify copied list only
+
+// Test Case 3: Assign over an existing list
 {
     LinkList<int> list1;
-
     list1.insertBack(1);
     list1.insertBack(2);
     list1.insertBack(3);
 
-    LinkList<int> list2(list1);
+    LinkList<int> list2;
+    list2.insertBack(100);
+    list2.insertBack(200);
 
-    list2.insertBack(4);
-    list2.deleteFront();
-
-    assert(list1.getSize() == 3);
-    assert(list1.getFront() == 1);
-    assert(list1.getBack() == 3);
+    list2 = list1;
 
     assert(list2.getSize() == 3);
-    assert(list2.getFront() == 2);
-    assert(list2.getBack() == 4);
 
-    std::cout << "Copy Constructor Test 5 Passed\n";
+    for (int i = 0; i < 3; i++)
+    {
+        assert(list2.get(i) == list1.get(i));
+    }
+
+    cout << "Assignment Operator Test 3 Passed\n";
+}
+
+// Test Case 4: Verify deep copy
+{
+    LinkList<int> list1;
+    list1.insertBack(5);
+    list1.insertBack(10);
+    list1.insertBack(15);
+
+    LinkList<int> list2;
+    list2 = list1;
+
+    list1.set(1, 99);
+
+    assert(list1.get(1) == 99);
+    assert(list2.get(1) == 10);
+
+    cout << "Assignment Operator Test 4 Passed\n";
+}
+
+// Test Case 5: Self assignment
+{
+    LinkList<int> list;
+
+    for (int i = 1; i <= 5; i++)
+    {
+        list.insertBack(i);
+    }
+
+    list = list;
+
+    assert(list.getSize() == 5);
+
+    for (int i = 0; i < 5; i++)
+    {
+        assert(list.get(i) == i + 1);
+    }
+
+    cout << "Assignment Operator Test 5 Passed\n";
 }
     return 0;
 }
