@@ -187,6 +187,11 @@ void LinkList<T>::clear(){
   size=0;
 }
 template<typename T>
+const T& LinkList<T>::getFront(){
+  if(head==nullptr)throw std::out_of_range("List is empty");
+  return head->data;
+}
+template<typename T>
 void LinkList<T>::print() const{
   Node* temp=head;
   if(head==nullptr)std::cout<<"List is empty\n";

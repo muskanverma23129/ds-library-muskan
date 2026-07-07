@@ -22,10 +22,13 @@ class LinkList{
   void insert(int index,const T& value);
   void deleteFront();
   void deleteBack();
-  void print() const;
   void removeAt(int index);
   bool removeValue(T value);
   void clear();
+  const T& getFront();
+  // const T& getBack();
+  void print() const;
+
 };
 #include "LinkList.cpp"
 #endif
