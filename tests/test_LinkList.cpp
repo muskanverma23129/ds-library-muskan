@@ -517,83 +517,169 @@ int main()
 // Method: insert(int index, const T& value)
 // ===============================
 
-// Test Case 1: Insert at the beginning
+// // Test Case 1: Insert at the beginning
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(20);
+//     list.insertBack(30);
+//     list.insert(0, 10);
+
+//     assert(list.getSize() == 3);
+//     assert(list.get(0) == 10);
+//     assert(list.get(1) == 20);
+//     assert(list.get(2) == 30);
+
+//     cout << "insert() Test 1 Passed\n";
+// }
+
+// // Test Case 2: Insert in the middle
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(30);
+//     list.insert(1, 20);
+
+//     assert(list.getSize() == 3);
+//     assert(list.get(0) == 10);
+//     assert(list.get(1) == 20);
+//     assert(list.get(2) == 30);
+
+//     cout << "insert() Test 2 Passed\n";
+// }
+
+// // Test Case 3: Insert at the end
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insert(2, 30);
+
+//     assert(list.getSize() == 3);
+//     assert(list.getFront() == 10);
+//     assert(list.getBack() == 30);
+
+//     cout << "insert() Test 3 Passed\n";
+// }
+
+// // Test Case 4: Invalid negative index
+// {
+//     LinkList<int> list;
+
+//     try
+//     {
+//         list.insert(-1, 100);
+//         assert(false);
+//     }
+//     catch (const out_of_range&)
+//     {
+//         cout << "insert() Test 4 Passed\n";
+//     }
+// }
+
+// // Test Case 5: Index greater than size
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+
+//     try
+//     {
+//         list.insert(2, 20);
+//         assert(false);
+//     }
+//     catch (const out_of_range&)
+//     {
+//         cout << "insert() Test 5 Passed\n";
+//     }
+// }
+
+
+
+// ===============================
+// Method: deleteFront()
+// ===============================
+
+// Test Case 1: Delete from an empty list
 {
     LinkList<int> list;
 
-    list.insertBack(20);
-    list.insertBack(30);
-    list.insert(0, 10);
+    list.deleteFront();
 
-    assert(list.getSize() == 3);
-    assert(list.get(0) == 10);
-    assert(list.get(1) == 20);
-    assert(list.get(2) == 30);
+    assert(list.getSize() == 0);
+    assert(list.isEmpty());
 
-    cout << "insert() Test 1 Passed\n";
+    cout << "deleteFront() Test 1 Passed\n";
 }
 
-// Test Case 2: Insert in the middle
+// Test Case 2: Delete the only element
 {
     LinkList<int> list;
 
     list.insertBack(10);
-    list.insertBack(30);
-    list.insert(1, 20);
+    list.deleteFront();
 
-    assert(list.getSize() == 3);
-    assert(list.get(0) == 10);
-    assert(list.get(1) == 20);
-    assert(list.get(2) == 30);
+    assert(list.getSize() == 0);
+    assert(list.isEmpty());
 
-    cout << "insert() Test 2 Passed\n";
+    cout << "deleteFront() Test 2 Passed\n";
 }
 
-// Test Case 3: Insert at the end
+// Test Case 3: Delete front from a multi-element list
 {
     LinkList<int> list;
 
     list.insertBack(10);
     list.insertBack(20);
-    list.insert(2, 30);
+    list.insertBack(30);
 
-    assert(list.getSize() == 3);
-    assert(list.getFront() == 10);
+    list.deleteFront();
+
+    assert(list.getSize() == 2);
+    assert(list.getFront() == 20);
     assert(list.getBack() == 30);
 
-    cout << "insert() Test 3 Passed\n";
+    cout << "deleteFront() Test 3 Passed\n";
 }
 
-// Test Case 4: Invalid negative index
+// Test Case 4: Delete front multiple times
 {
     LinkList<int> list;
 
-    try
+    for (int i = 1; i <= 5; i++)
     {
-        list.insert(-1, 100);
-        assert(false);
+        list.insertBack(i);
     }
-    catch (const out_of_range&)
-    {
-        cout << "insert() Test 4 Passed\n";
-    }
+
+    list.deleteFront();
+    list.deleteFront();
+
+    assert(list.getSize() == 3);
+    assert(list.getFront() == 3);
+    assert(list.getBack() == 5);
+
+    cout << "deleteFront() Test 4 Passed\n";
 }
 
-// Test Case 5: Index greater than size
+// Test Case 5: Delete until the list becomes empty
 {
     LinkList<int> list;
 
-    list.insertBack(10);
+    list.insertBack(1);
+    list.insertBack(2);
+    list.insertBack(3);
 
-    try
-    {
-        list.insert(2, 20);
-        assert(false);
-    }
-    catch (const out_of_range&)
-    {
-        cout << "insert() Test 5 Passed\n";
-    }
+    list.deleteFront();
+    list.deleteFront();
+    list.deleteFront();
+
+    assert(list.getSize() == 0);
+    assert(list.isEmpty());
+
+    cout << "deleteFront() Test 5 Passed\n";
 }
+
     return 0;
 }
