@@ -602,16 +602,101 @@ int main()
 // Method: deleteFront()
 // ===============================
 
+// // Test Case 1: Delete from an empty list
+// {
+//     LinkList<int> list;
+
+//     list.deleteFront();
+
+//     assert(list.getSize() == 0);
+//     assert(list.isEmpty());
+
+//     cout << "deleteFront() Test 1 Passed\n";
+// }
+
+// // Test Case 2: Delete the only element
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.deleteFront();
+
+//     assert(list.getSize() == 0);
+//     assert(list.isEmpty());
+
+//     cout << "deleteFront() Test 2 Passed\n";
+// }
+
+// // Test Case 3: Delete front from a multi-element list
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     list.deleteFront();
+
+//     assert(list.getSize() == 2);
+//     assert(list.getFront() == 20);
+//     assert(list.getBack() == 30);
+
+//     cout << "deleteFront() Test 3 Passed\n";
+// }
+
+// // Test Case 4: Delete front multiple times
+// {
+//     LinkList<int> list;
+
+//     for (int i = 1; i <= 5; i++)
+//     {
+//         list.insertBack(i);
+//     }
+
+//     list.deleteFront();
+//     list.deleteFront();
+
+//     assert(list.getSize() == 3);
+//     assert(list.getFront() == 3);
+//     assert(list.getBack() == 5);
+
+//     cout << "deleteFront() Test 4 Passed\n";
+// }
+
+// // Test Case 5: Delete until the list becomes empty
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(1);
+//     list.insertBack(2);
+//     list.insertBack(3);
+
+//     list.deleteFront();
+//     list.deleteFront();
+//     list.deleteFront();
+
+//     assert(list.getSize() == 0);
+//     assert(list.isEmpty());
+
+//     cout << "deleteFront() Test 5 Passed\n";
+// }
+
+
+
+// ===============================
+// Method: deleteBack()
+// ===============================
+
 // Test Case 1: Delete from an empty list
 {
     LinkList<int> list;
 
-    list.deleteFront();
+    list.deleteBack();
 
     assert(list.getSize() == 0);
     assert(list.isEmpty());
 
-    cout << "deleteFront() Test 1 Passed\n";
+    cout << "deleteBack() Test 1 Passed\n";
 }
 
 // Test Case 2: Delete the only element
@@ -619,15 +704,15 @@ int main()
     LinkList<int> list;
 
     list.insertBack(10);
-    list.deleteFront();
+    list.deleteBack();
 
     assert(list.getSize() == 0);
     assert(list.isEmpty());
 
-    cout << "deleteFront() Test 2 Passed\n";
+    cout << "deleteBack() Test 2 Passed\n";
 }
 
-// Test Case 3: Delete front from a multi-element list
+// Test Case 3: Delete back from a multi-element list
 {
     LinkList<int> list;
 
@@ -635,16 +720,16 @@ int main()
     list.insertBack(20);
     list.insertBack(30);
 
-    list.deleteFront();
+    list.deleteBack();
 
     assert(list.getSize() == 2);
-    assert(list.getFront() == 20);
-    assert(list.getBack() == 30);
+    assert(list.getFront() == 10);
+    assert(list.getBack() == 20);
 
-    cout << "deleteFront() Test 3 Passed\n";
+    cout << "deleteBack() Test 3 Passed\n";
 }
 
-// Test Case 4: Delete front multiple times
+// Test Case 4: Delete back multiple times
 {
     LinkList<int> list;
 
@@ -653,14 +738,14 @@ int main()
         list.insertBack(i);
     }
 
-    list.deleteFront();
-    list.deleteFront();
+    list.deleteBack();
+    list.deleteBack();
 
     assert(list.getSize() == 3);
-    assert(list.getFront() == 3);
-    assert(list.getBack() == 5);
+    assert(list.getFront() == 1);
+    assert(list.getBack() == 3);
 
-    cout << "deleteFront() Test 4 Passed\n";
+    cout << "deleteBack() Test 4 Passed\n";
 }
 
 // Test Case 5: Delete until the list becomes empty
@@ -671,15 +756,14 @@ int main()
     list.insertBack(2);
     list.insertBack(3);
 
-    list.deleteFront();
-    list.deleteFront();
-    list.deleteFront();
+    list.deleteBack();
+    list.deleteBack();
+    list.deleteBack();
 
     assert(list.getSize() == 0);
     assert(list.isEmpty());
 
-    cout << "deleteFront() Test 5 Passed\n";
+    cout << "deleteBack() Test 5 Passed\n";
 }
-
     return 0;
 }
