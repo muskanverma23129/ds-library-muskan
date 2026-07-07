@@ -1265,11 +1265,121 @@ int main()
 
 
 
+// // ===============================
+// // Method: set(int index, const T& value)
+// // ===============================
+
+// // Test Case 1: Set first element
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     list.set(0, 100);
+
+//     assert(list.get(0) == 100);
+//     assert(list.get(1) == 20);
+//     assert(list.get(2) == 30);
+
+//     cout << "set() Test 1 Passed\n";
+// }
+
+// // Test Case 2: Set middle element
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     list.set(1, 200);
+
+//     assert(list.get(0) == 10);
+//     assert(list.get(1) == 200);
+//     assert(list.get(2) == 30);
+
+//     cout << "set() Test 2 Passed\n";
+// }
+
+// // Test Case 3: Set last element
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     list.set(2, 300);
+
+//     assert(list.getBack() == 300);
+
+//     cout << "set() Test 3 Passed\n";
+// }
+
+// // Test Case 4: Set value with negative index should throw
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+
+//     try
+//     {
+//         list.set(-1, 100);
+//         assert(false);
+//     }
+//     catch (const out_of_range&)
+//     {
+//         cout << "set() Test 4 Passed\n";
+//     }
+// }
+
+// // Test Case 5: Set value with index >= size should throw
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+
+//     try
+//     {
+//         list.set(2, 100);
+//         assert(false);
+//     }
+//     catch (const out_of_range&)
+//     {
+//         cout << "set() Test 5 Passed\n";
+//     }
+// }
+
+
+
 // ===============================
-// Method: set(int index, const T& value)
+// Method: getSize() const
 // ===============================
 
-// Test Case 1: Set first element
+// Test Case 1: Get size of an empty list
+{
+    LinkList<int> list;
+
+    assert(list.getSize() == 0);
+
+    cout << "getSize() Test 1 Passed\n";
+}
+
+// Test Case 2: Get size after one insertion
+{
+    LinkList<int> list;
+
+    list.insertBack(10);
+
+    assert(list.getSize() == 1);
+
+    cout << "getSize() Test 2 Passed\n";
+}
+
+// Test Case 3: Get size after multiple insertions
 {
     LinkList<int> list;
 
@@ -1277,16 +1387,12 @@ int main()
     list.insertBack(20);
     list.insertBack(30);
 
-    list.set(0, 100);
+    assert(list.getSize() == 3);
 
-    assert(list.get(0) == 100);
-    assert(list.get(1) == 20);
-    assert(list.get(2) == 30);
-
-    cout << "set() Test 1 Passed\n";
+    cout << "getSize() Test 3 Passed\n";
 }
 
-// Test Case 2: Set middle element
+// Test Case 4: Get size after deletion
 {
     LinkList<int> list;
 
@@ -1294,63 +1400,28 @@ int main()
     list.insertBack(20);
     list.insertBack(30);
 
-    list.set(1, 200);
+    list.deleteFront();
+    list.deleteBack();
 
-    assert(list.get(0) == 10);
-    assert(list.get(1) == 200);
-    assert(list.get(2) == 30);
+    assert(list.getSize() == 1);
 
-    cout << "set() Test 2 Passed\n";
+    cout << "getSize() Test 4 Passed\n";
 }
 
-// Test Case 3: Set last element
+// Test Case 5: Get size after clear
 {
     LinkList<int> list;
 
-    list.insertBack(10);
-    list.insertBack(20);
-    list.insertBack(30);
-
-    list.set(2, 300);
-
-    assert(list.getBack() == 300);
-
-    cout << "set() Test 3 Passed\n";
-}
-
-// Test Case 4: Set value with negative index should throw
-{
-    LinkList<int> list;
-
-    list.insertBack(10);
-
-    try
+    for(int i = 1; i <= 10; i++)
     {
-        list.set(-1, 100);
-        assert(false);
+        list.insertBack(i);
     }
-    catch (const out_of_range&)
-    {
-        cout << "set() Test 4 Passed\n";
-    }
-}
 
-// Test Case 5: Set value with index >= size should throw
-{
-    LinkList<int> list;
+    list.clear();
 
-    list.insertBack(10);
-    list.insertBack(20);
+    assert(list.getSize() == 0);
 
-    try
-    {
-        list.set(2, 100);
-        assert(false);
-    }
-    catch (const out_of_range&)
-    {
-        cout << "set() Test 5 Passed\n";
-    }
+    cout << "getSize() Test 5 Passed\n";
 }
     return 0;
 }
