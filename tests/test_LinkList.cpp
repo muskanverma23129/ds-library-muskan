@@ -12,8 +12,10 @@ LinkList<string> l;
   l.insertBack("three");
   l.insertBack("four");
   l.insertBack("five");
-
+LinkList<string> l2=l;
 l.set(0,"0");
 l.set(1,"1");
+l.insert(2,"1.5");
  l.print();
+ l2.print();
 }

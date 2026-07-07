@@ -15,6 +15,17 @@ LinkList<T>::~LinkList(){
   }
 }
 template<typename T>
+LinkList<T>::LinkList(const LinkList& other){
+  size=0;
+  head=nullptr;
+  tail=nullptr;
+  Node* temp=other.head;
+  while(temp!=nullptr){
+    insertBack(temp->data);
+    temp=temp->next;
+  }
+}
+template<typename T>
 void LinkList<T>::insertFront(const T& value){
   Node* newNode=(Node*)malloc(sizeof(Node));
   if(newNode==nullptr){

@@ -17,6 +17,7 @@ class LinkList{
   public:
   LinkList();
   ~LinkList();
+  LinkList(const LinkList& other);
   void insertFront(const T& value);
   void insertBack(const T& value);
   void insert(int index,const T& value);
