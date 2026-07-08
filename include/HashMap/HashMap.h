@@ -19,5 +19,8 @@ class HashMap{
     HashMap(int capacity);
     void set(int key,std::string value);
     std::string get(int key);
+    void print();
 };
+
+
 #endif
