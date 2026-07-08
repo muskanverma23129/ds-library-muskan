@@ -1582,6 +1582,5 @@ LinkList<int> l;
 for(int i=0;i<10;i++){
     l.insertBack(i);
 }
-cout<<l.getSize();
     return 0;
 }

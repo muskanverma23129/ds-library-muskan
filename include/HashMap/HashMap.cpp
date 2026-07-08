@@ -133,3 +133,17 @@ void HashMap::print()
     std::cout << "\n";
   }
 }
+HashMap::Pair* HashMap<Pair>::find(int key){
+  for(int i=0;i<this->buckets.getSize();i++){
+    LinkList<Pair>& list=.get(i);
+    int j=0;
+    while(j<list.getSize()){
+      HashMap::Pair& p=list.get(j);
+      if(p.key==key){
+        return &p;
+      }
+      ++j;
+    }
+  } 
+  return nullptr;
+}

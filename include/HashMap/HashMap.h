@@ -26,7 +26,7 @@ class HashMap{
     std::string get(int key);
     Pair* find(int key);
     // void remove(key);
-    // void print();
+    void print();
 };
 
 
