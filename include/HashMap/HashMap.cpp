@@ -14,6 +14,55 @@ HashMap::HashMap(int capacity) : size(0), capacity(capacity), buckets(capacity)
     buckets.append(LinkList<Pair>());
   }
 }
+void HashMap::reHash(){
+  int newCapacity=2*capacity;
+  // LinkList<Pair>* temp=(LinkList<Pair>*)malloc(sizeOf(LinkList<Pair>)*newCapacity);
+  DynamicArray<LinkList<Pair>> newBuckets(newCapacity);
+  for(int i=0;i<newCapacity;i++){
+    newBuckets.append(LinkList<Pair>());
+  }
+
+  int i=0;
+
+  while(i<capacity){
+    LinkList<Pair>& oldBucketList=buckets.get(i);
+    int j=0;
+    int listSize=oldBucketList.getSize();
+    while(j<listSize){
+      HashMap::Pair p=oldBucketList.get(j);
+      int newBucketNo=p.key%newCapacity;
+      LinkList<Pair>& newBucketList=newBuckets.get(newBucketNo);
+      newBucketList.insertBack(p);
+      // if(newBuckets.get(newBucketNo).isEmpty()){
+      //   newBuckets.get(newBucketNo).insertBack(p);
+      // }else{
+        // int k=0;
+        // LinkList<Pair> newBucketList=newBuckets.get(newBucketNo);
+        // int newBucketListSize=newBucketList.getSize();
+
+        // while(k<newBucketListSize){
+        //   if(p.key==newBucketList.get(k).key){
+        //     newBucketList.set(k,p);
+        //     break;
+        //   }
+        //   ++k;
+        // }
+      // }
+      ++j;
+    } 
+    ++i;
+  }
+  // buckets.~DynamicArray();
+  buckets=newBuckets;
+  capacity=newCapacity;
+  
+}
+int HashMap::getSize(){
+  return size;
+}
+int HashMap::getCapacity(){
+  return capacity;
+}
 void HashMap::set(int key, std::string value)
 {
   Pair p(key, value);
@@ -22,9 +71,23 @@ void HashMap::set(int key, std::string value)
   // if(temp==nullptr){
   //   temp.insertFront(p);
   // }else{
+  int size=temp.getSize();
+  // std::cout<<"LIst"<<size<<"\n";
+  int i=0;
+  while(i<size){
+    if(temp.get(i).key==key){
+      temp.set(i,p);
+      return;
+    }
+    ++i;
+  }
   temp.insertBack(p);
-  ++size;
+  ++this->size;
+  //  std::cout<<"Hash"<<this->size<<"\n";
+  // std::cout<<(float)size/capacity<<"hi\n";
+  if((float)this->size/capacity>=0.75)reHash();
 }
+
 std::string HashMap::get(int key)
 {
   LinkList<Pair> &temp = buckets.get(key % capacity);

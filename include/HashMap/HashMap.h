@@ -1,4 +1,5 @@
 #include<string>
+#include<iostream>
 #include "../DynamicArray/DynamicArray.h"
 #include "../LinkList/LinkList.h"
 #ifndef HASHMAP_H
@@ -14,12 +15,18 @@ class HashMap{
       Pair(int key,std::string value):key(key),value(value){};
     };
     DynamicArray<LinkList<Pair>> buckets;
+    
     public:
     HashMap();
     HashMap(int capacity);
+    void reHash();
+    int getSize();
+    int getCapacity();
     void set(int key,std::string value);
     std::string get(int key);
-    void print();
+    Pair* find(int key);
+    // void remove(key);
+    // void print();
 };
 
 

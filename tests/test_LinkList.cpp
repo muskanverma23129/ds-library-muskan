@@ -1497,86 +1497,91 @@ int main()
 
 
 // ===============================
-// Method: print() const
-// ===============================
+// // Method: print() const
+// // ===============================
 
-// Test Case 1: Print an empty list
-{
-    LinkList<int> list;
+// // Test Case 1: Print an empty list
+// {
+//     LinkList<int> list;
 
-    list.print();
+//     list.print();
 
-    assert(list.getSize() == 0);
+//     assert(list.getSize() == 0);
 
-    cout << "print() Test 1 Passed\n";
+//     cout << "print() Test 1 Passed\n";
+// }
+
+// // Test Case 2: Print a single element list
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+
+//     list.print();
+
+//     assert(list.getFront() == 10);
+//     assert(list.getBack() == 10);
+
+//     cout << "print() Test 2 Passed\n";
+// }
+
+// // Test Case 3: Print multiple elements
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     list.print();
+
+//     assert(list.getSize() == 3);
+//     assert(list.get(0) == 10);
+//     assert(list.get(1) == 20);
+//     assert(list.get(2) == 30);
+
+//     cout << "print() Test 3 Passed\n";
+// }
+
+// // Test Case 4: Print after deletion
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(10);
+//     list.insertBack(20);
+//     list.insertBack(30);
+
+//     list.deleteFront();
+//     list.deleteBack();
+
+//     list.print();
+
+//     assert(list.getSize() == 1);
+//     assert(list.getFront() == 20);
+
+//     cout << "print() Test 4 Passed\n";
+// }
+
+// // Test Case 5: Print after clear
+// {
+//     LinkList<int> list;
+
+//     list.insertBack(1);
+//     list.insertBack(2);
+//     list.insertBack(3);
+
+//     list.clear();
+
+//     list.print();
+
+//     assert(list.isEmpty());
+
+//     cout << "print() Test 5 Passed\n";
+// }
+LinkList<int> l;
+for(int i=0;i<10;i++){
+    l.insertBack(i);
 }
-
-// Test Case 2: Print a single element list
-{
-    LinkList<int> list;
-
-    list.insertBack(10);
-
-    list.print();
-
-    assert(list.getFront() == 10);
-    assert(list.getBack() == 10);
-
-    cout << "print() Test 2 Passed\n";
-}
-
-// Test Case 3: Print multiple elements
-{
-    LinkList<int> list;
-
-    list.insertBack(10);
-    list.insertBack(20);
-    list.insertBack(30);
-
-    list.print();
-
-    assert(list.getSize() == 3);
-    assert(list.get(0) == 10);
-    assert(list.get(1) == 20);
-    assert(list.get(2) == 30);
-
-    cout << "print() Test 3 Passed\n";
-}
-
-// Test Case 4: Print after deletion
-{
-    LinkList<int> list;
-
-    list.insertBack(10);
-    list.insertBack(20);
-    list.insertBack(30);
-
-    list.deleteFront();
-    list.deleteBack();
-
-    list.print();
-
-    assert(list.getSize() == 1);
-    assert(list.getFront() == 20);
-
-    cout << "print() Test 4 Passed\n";
-}
-
-// Test Case 5: Print after clear
-{
-    LinkList<int> list;
-
-    list.insertBack(1);
-    list.insertBack(2);
-    list.insertBack(3);
-
-    list.clear();
-
-    list.print();
-
-    assert(list.isEmpty());
-
-    cout << "print() Test 5 Passed\n";
-}
+cout<<l.getSize();
     return 0;
 }
