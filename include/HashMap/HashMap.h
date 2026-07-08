@@ -2,17 +2,19 @@
 #include<iostream>
 #include "../DynamicArray/DynamicArray.h"
 #include "../LinkList/LinkList.h"
+#include "./MurmurHash3.h"
 #ifndef HASHMAP_H
 #define HASHMAP_H
+template<typename K,typename V>
 class HashMap{
   private:
     int size;
     int capacity;
     struct Pair{
-      int key;
-      std::string value;
-      Pair():key(0),value(""){};
-      Pair(int key,std::string value):key(key),value(value){};
+      K key;
+      V value;
+      Pair():key(),value(){};
+      Pair(K key,V value):key(key),value(value){};
     };
     DynamicArray<LinkList<Pair>> buckets;
     
@@ -23,13 +25,14 @@ class HashMap{
     void reHash();
     int getSize();
     int getCapacity();
-    void set(int key,std::string value);
-    std::string get(int key);
+    void set(const K& key,const V& value);
+    const V& get(const K& key);
     // Pair* find(int key);
-    void remove(int key);
+    void remove(const K& key);
     void print();
-    bool exist(int key);
+    bool exist(const K& key);
+    float loadFactor();
 };
 
-
+#include "./HashMap.tpp"
 #endif

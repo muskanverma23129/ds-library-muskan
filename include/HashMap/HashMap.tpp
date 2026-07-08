@@ -1,13 +1,14 @@
-#include "./HashMap.h"
 #include <stdexcept>
-HashMap::HashMap() : size(0), capacity(8), buckets(8)
+template <typename K, typename V>
+HashMap<K, V>::HashMap() : size(0), capacity(8), buckets(8)
 {
   for (int i = 0; i < capacity; i++)
   {
     buckets.append(LinkList<Pair>());
   }
 }
-HashMap::HashMap(int capacity) : size(0), capacity(capacity), buckets(capacity)
+template <typename K, typename V>
+HashMap<K, V>::HashMap(int capacity) : size(0), capacity(capacity), buckets(capacity)
 {
   for (int i = 0; i < capacity; i++)
   {
@@ -17,69 +18,80 @@ HashMap::HashMap(int capacity) : size(0), capacity(capacity), buckets(capacity)
 // HashMap::HashMap(HashMap &other){
 
 // }
-void HashMap::reHash(){
-  int newCapacity=2*capacity;
+template <typename K, typename V>
+void HashMap<K, V>::reHash()
+{
+  int newCapacity = 2 * capacity;
   // LinkList<Pair>* temp=(LinkList<Pair>*)malloc(sizeOf(LinkList<Pair>)*newCapacity);
   DynamicArray<LinkList<Pair>> newBuckets(newCapacity);
-  for(int i=0;i<newCapacity;i++){
+  for (int i = 0; i < newCapacity; i++)
+  {
     newBuckets.append(LinkList<Pair>());
   }
 
-  int i=0;
+  int i = 0;
 
-  while(i<capacity){
-    LinkList<Pair>& oldBucketList=buckets.get(i);
-    int j=0;
-    int listSize=oldBucketList.getSize();
-    while(j<listSize){
-      HashMap::Pair p=oldBucketList.get(j);
-      int newBucketNo=p.key%newCapacity;
-      LinkList<Pair>& newBucketList=newBuckets.get(newBucketNo);
+  while (i < capacity)
+  {
+    LinkList<Pair> &oldBucketList = buckets.get(i);
+    int j = 0;
+    int listSize = oldBucketList.getSize();
+    while (j < listSize)
+    {
+      HashMap::Pair p = oldBucketList.get(j);
+      size_t newBucketNo = getHash(p.key) % newCapacity;
+      LinkList<Pair> &newBucketList = newBuckets.get(newBucketNo);
       newBucketList.insertBack(p);
       // if(newBuckets.get(newBucketNo).isEmpty()){
       //   newBuckets.get(newBucketNo).insertBack(p);
       // }else{
-        // int k=0;
-        // LinkList<Pair> newBucketList=newBuckets.get(newBucketNo);
-        // int newBucketListSize=newBucketList.getSize();
+      // int k=0;
+      // LinkList<Pair> newBucketList=newBuckets.get(newBucketNo);
+      // int newBucketListSize=newBucketList.getSize();
 
-        // while(k<newBucketListSize){
-        //   if(p.key==newBucketList.get(k).key){
-        //     newBucketList.set(k,p);
-        //     break;
-        //   }
-        //   ++k;
-        // }
+      // while(k<newBucketListSize){
+      //   if(p.key==newBucketList.get(k).key){
+      //     newBucketList.set(k,p);
+      //     break;
+      //   }
+      //   ++k;
+      // }
       // }
       ++j;
-    } 
+    }
     ++i;
   }
   // buckets.~DynamicArray();
-  buckets=newBuckets;
-  capacity=newCapacity;
-  
+  buckets = newBuckets;
+  capacity = newCapacity;
 }
-int HashMap::getSize(){
+template <typename K, typename V>
+int HashMap<K, V>::getSize()
+{
   return size;
 }
-int HashMap::getCapacity(){
+template <typename K, typename V>
+int HashMap<K, V>::getCapacity()
+{
   return capacity;
 }
-void HashMap::set(int key, std::string value)
+template <typename K, typename V>
+void HashMap<K, V>::set(const K &key, const V &value)
 {
   Pair p(key, value);
-  int bucketno = key % capacity;
-  LinkList<Pair> &temp = buckets.get(bucketno);
+  size_t bucketNo = getHash(key) % capacity;
+  LinkList<Pair> &temp = buckets.get(bucketNo);
   // if(temp==nullptr){
   //   temp.insertFront(p);
   // }else{
-  int size=temp.getSize();
+  int size = temp.getSize();
   // std::cout<<"LIst"<<size<<"\n";
-  int i=0;
-  while(i<size){
-    if(temp.get(i).key==key){
-      temp.set(i,p);
+  int i = 0;
+  while (i < size)
+  {
+    if (temp.get(i).key == key)
+    {
+      temp.set(i, p);
       return;
     }
     ++i;
@@ -88,10 +100,12 @@ void HashMap::set(int key, std::string value)
   ++this->size;
   //  std::cout<<"Hash"<<this->size<<"\n";
   // std::cout<<(float)size/capacity<<"hi\n";
-  if((float)this->size/capacity>0.75)reHash();
+  if ((float)this->size / capacity > 0.75)
+    reHash();
 }
 
-std::string HashMap::get(int key)
+template <typename K, typename V>
+const V &HashMap<K, V>::get(const K &key)
 {
   LinkList<Pair> &temp = buckets.get(key % capacity);
   int i = 0;
@@ -106,7 +120,8 @@ std::string HashMap::get(int key)
   }
   throw std::invalid_argument("key doesnot exist");
 }
-void HashMap::print()
+template <typename K, typename V>
+void HashMap<K, V>::print()
 {
   for (int i = 0; i < capacity; i++)
   {
@@ -147,16 +162,20 @@ void HashMap::print()
 //       }
 //       ++j;
 //     }
-//   } 
+//   }
 //   return nullptr;
 // }
-void HashMap::remove(int key){
-  int bucketNo=key%capacity;
-  LinkList<Pair>& list=buckets.get(bucketNo);
-  int size=list.getSize();
-  int i=0;
-  while(i<size){
-    if(list.get(i).key==key){
+template <typename K, typename V>
+void HashMap<K, V>::remove(const K &key)
+{
+  size_t bucketNo = getHash(key) % capacity;
+  LinkList<Pair> &list = buckets.get(bucketNo);
+  int size = list.getSize();
+  int i = 0;
+  while (i < size)
+  {
+    if (list.get(i).key == key)
+    {
       list.removeAt(i);
       return;
     }
@@ -164,16 +183,24 @@ void HashMap::remove(int key){
   }
   throw std::invalid_argument("key did not exist");
 }
-bool HashMap::exist(int key){
-  int bucketNo=key%capacity;
-  LinkList<Pair>& list=buckets.get(bucketNo);
-  int size=list.getSize();
-  int i=0;
-  while(i<size){
-    if(list.get(i).key==key){ 
-      return true; 
+template <typename K, typename V>
+bool HashMap<K, V>::exist(const K &key)
+{
+  size_t bucketNo = getHash(key) % capacity;
+  LinkList<Pair> &list = buckets.get(bucketNo);
+  int size = list.getSize();
+  int i = 0;
+  while (i < size)
+  {
+    if (list.get(i).key == key)
+    {
+      return true;
     }
     ++i;
   }
   return false;
+}
+template <typename K, typename V>
+float HashMap<K,V>::loadFactor(){
+ return (float)this->size/this->capacity;
 }
