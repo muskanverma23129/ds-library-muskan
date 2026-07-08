@@ -24,9 +24,10 @@ class HashMap{
     int getCapacity();
     void set(int key,std::string value);
     std::string get(int key);
-    Pair* find(int key);
-    // void remove(key);
+    // Pair* find(int key);
+    void remove(int key);
     void print();
+    // bool exist(int key);
 };
 
 

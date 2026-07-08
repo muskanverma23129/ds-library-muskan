@@ -11,9 +11,7 @@ int main(){
   h.set(50,"muskan5");
   h.set(11,"verma1");
   h.set(21,"verma2");
-  h.print();
-
-  h.set(31,"verma3");
+  cout<<h.exist(22)<<"\n"<<h.exist(20);
   h.print();
   
   return 0;

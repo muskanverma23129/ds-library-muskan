@@ -85,7 +85,7 @@ void HashMap::set(int key, std::string value)
   ++this->size;
   //  std::cout<<"Hash"<<this->size<<"\n";
   // std::cout<<(float)size/capacity<<"hi\n";
-  if((float)this->size/capacity>=0.75)reHash();
+  if((float)this->size/capacity>0.75)reHash();
 }
 
 std::string HashMap::get(int key)
@@ -133,17 +133,44 @@ void HashMap::print()
     std::cout << "\n";
   }
 }
-HashMap::Pair* HashMap<Pair>::find(int key){
-  for(int i=0;i<this->buckets.getSize();i++){
-    LinkList<Pair>& list=.get(i);
-    int j=0;
-    while(j<list.getSize()){
-      HashMap::Pair& p=list.get(j);
-      if(p.key==key){
-        return &p;
-      }
-      ++j;
+// HashMap::Pair* HashMap<Pair>::find(int key){
+//   for(int i=0;i<this->buckets.getSize();i++){
+//     LinkList<Pair>& list=.get(i);
+//     int j=0;
+//     while(j<list.getSize()){
+//       HashMap::Pair& p=list.get(j);
+//       if(p.key==key){
+//         return &p;
+//       }
+//       ++j;
+//     }
+//   } 
+//   return nullptr;
+// }
+void HashMap::remove(int key){
+  int bucketNo=key%capacity;
+  LinkList<Pair>& list=buckets.get(bucketNo);
+  int size=list.getSize();
+  int i=0;
+  while(i<size){
+    if(list.get(i).key==key){
+      list.removeAt(i);
+      return;
     }
-  } 
-  return nullptr;
+    ++i;
+  }
+  throw std::invalid_argument("key did not exist");
 }
+// bool HashMap::exist(int key){
+//   int bucketNo=key%capacity;
+//   LinkList<Pair>& list=buckets.get(bucketNo);
+//   int size=list.getSize();
+//   int i=0;
+//   while(i<size){
+//     if(list.get(i).key==key){ 
+//       return true; 
+//     }
+//     ++i;
+//   }
+//   return false;
+// }
