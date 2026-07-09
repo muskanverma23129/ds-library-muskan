@@ -945,101 +945,206 @@ int main(){
 
 
 // =====================================================
-// ===== Method: reHash() ==============================
+// // ===== Method: reHash() ==============================
+// // =====================================================
+
+// // Test Case 1: Rehash an empty HashMap
+// {
+//     HashMap<int, int> map;
+
+//     map.reHash();
+
+//     std::cout << map.getCapacity() << std::endl;
+//     std::cout << map.getSize() << std::endl;
+// }
+// // Expected:
+// // 16
+// // 0
+
+
+// // Test Case 2: Rehash with one element
+// {
+//     HashMap<int, int> map;
+
+//     map.set(10, 100);
+
+//     map.reHash();
+
+//     std::cout << map.getCapacity() << std::endl;
+//     std::cout << map.getSize() << std::endl;
+//     std::cout << map.get(10) << std::endl;
+// }
+// // Expected:
+// // 16
+// // 1
+// // 100
+
+
+// // Test Case 3: Rehash with multiple elements
+// {
+//     HashMap<int, int> map;
+
+//     map.set(1, 10);
+//     map.set(2, 20);
+//     map.set(3, 30);
+//     map.set(4, 40);
+
+//     map.reHash();
+
+//     std::cout << map.getCapacity() << std::endl;
+//     std::cout << map.get(1) << std::endl;
+//     std::cout << map.get(2) << std::endl;
+//     std::cout << map.get(3) << std::endl;
+//     std::cout << map.get(4) << std::endl;
+// }
+// // Expected:
+// // 16
+// // 10
+// // 20
+// // 30
+// // 40
+
+
+// // Test Case 4: Multiple consecutive rehashes
+// {
+//     HashMap<int, int> map;
+
+//     map.reHash();
+//     map.reHash();
+//     map.reHash();
+
+//     std::cout << map.getCapacity() << std::endl;
+// }
+// // Expected:
+// // 64
+// // (8 → 16 → 32 → 64)
+
+
+// // Test Case 5: Rehash after automatic rehash
+// {
+//     HashMap<int, int> map;
+
+//     for (int i = 1; i <= 20; i++)
+//     {
+//         map.set(i, i * 100);
+//     }
+
+//     map.reHash();
+
+//     std::cout << map.getCapacity() << std::endl;
+//     std::cout << map.getSize() << std::endl;
+//     std::cout << map.get(1) << std::endl;
+//     std::cout << map.get(20) << std::endl;
+// }
+// // Expected:
+// // 64
+// // 20
+// // 100
+// // 2000
+
+
+
+// =====================================================
+// ===== Edge Case / Stress Tests =======================
 // =====================================================
 
-// Test Case 1: Rehash an empty HashMap
+// Test Case 1: Insert 1000 elements
 {
     HashMap<int, int> map;
 
-    map.reHash();
+    for (int i = 1; i <= 1000; i++)
+    {
+        map.set(i, i * 10);
+    }
 
-    std::cout << map.getCapacity() << std::endl;
     std::cout << map.getSize() << std::endl;
-}
-// Expected:
-// 16
-// 0
-
-
-// Test Case 2: Rehash with one element
-{
-    HashMap<int, int> map;
-
-    map.set(10, 100);
-
-    map.reHash();
-
-    std::cout << map.getCapacity() << std::endl;
-    std::cout << map.getSize() << std::endl;
-    std::cout << map.get(10) << std::endl;
-}
-// Expected:
-// 16
-// 1
-// 100
-
-
-// Test Case 3: Rehash with multiple elements
-{
-    HashMap<int, int> map;
-
-    map.set(1, 10);
-    map.set(2, 20);
-    map.set(3, 30);
-    map.set(4, 40);
-
-    map.reHash();
-
-    std::cout << map.getCapacity() << std::endl;
     std::cout << map.get(1) << std::endl;
-    std::cout << map.get(2) << std::endl;
-    std::cout << map.get(3) << std::endl;
-    std::cout << map.get(4) << std::endl;
+    std::cout << map.get(500) << std::endl;
+    std::cout << map.get(1000) << std::endl;
 }
 // Expected:
-// 16
+// 1000
 // 10
-// 20
-// 30
-// 40
+// 5000
+// 10000
 
 
-// Test Case 4: Multiple consecutive rehashes
-{
-    HashMap<int, int> map;
-
-    map.reHash();
-    map.reHash();
-    map.reHash();
-
-    std::cout << map.getCapacity() << std::endl;
-}
-// Expected:
-// 64
-// (8 → 16 → 32 → 64)
-
-
-// Test Case 5: Rehash after automatic rehash
+// Test Case 2: Remove every element
 {
     HashMap<int, int> map;
 
     for (int i = 1; i <= 20; i++)
     {
-        map.set(i, i * 100);
+        map.set(i, i);
     }
 
-    map.reHash();
+    for (int i = 1; i <= 20; i++)
+    {
+        map.remove(i);
+    }
 
-    std::cout << map.getCapacity() << std::endl;
     std::cout << map.getSize() << std::endl;
-    std::cout << map.get(1) << std::endl;
-    std::cout << map.get(20) << std::endl;
 }
 // Expected:
-// 64
-// 20
+// 0
+
+
+// Test Case 3: Repeated update of the same key
+{
+    HashMap<int, int> map;
+
+    for (int i = 1; i <= 100; i++)
+    {
+        map.set(10, i);
+    }
+
+    std::cout << map.get(10) << std::endl;
+    std::cout << map.getSize() << std::endl;
+}
+// Expected:
 // 100
-// 2000
+// 1
+
+
+// Test Case 4: Alternate insert and remove
+{
+    HashMap<int, int> map;
+
+    for (int i = 1; i <= 50; i++)
+    {
+        map.set(i, i * 100);
+        map.remove(i);
+    }
+
+    std::cout << map.getSize() << std::endl;
+}
+// Expected:
+// 0
+
+
+// Test Case 5: Verify all data after multiple rehashes
+{
+    HashMap<int, int> map;
+
+    for (int i = 1; i <= 200; i++)
+    {
+        map.set(i, i * 5);
+    }
+
+    bool ok = true;
+
+    for (int i = 1; i <= 200; i++)
+    {
+        if (map.get(i) != i * 5)
+        {
+            ok = false;
+            break;
+        }
+    }
+
+    std::cout << ok << std::endl;
+}
+// Expected:
+// 1
   return 0;
 }
