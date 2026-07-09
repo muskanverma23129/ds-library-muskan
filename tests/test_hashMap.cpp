@@ -490,25 +490,114 @@ int main(){
 // // Expected:
 // // 32
 // // 20
+// // // 2000
+
+// // =====================================================
+// // ===== Method: get() =================================
+// // =====================================================
+
+// // Test Case 1: Get an existing key
+// {
+//     HashMap<int, int> map;
+
+//     map.set(10, 100);
+
+//     std::cout << map.get(10) << std::endl;
+// }
+// // Expected:
+// // 100
+
+
+// // Test Case 2: Get multiple existing keys
+// {
+//     HashMap<int, int> map;
+
+//     map.set(1, 10);
+//     map.set(2, 20);
+//     map.set(3, 30);
+
+//     std::cout << map.get(1) << std::endl;
+//     std::cout << map.get(2) << std::endl;
+//     std::cout << map.get(3) << std::endl;
+// }
+// // Expected:
+// // 10
+// // 20
+// // 30
+
+
+// // Test Case 3: Get string values
+// {
+//     HashMap<int, std::string> map;
+
+//     map.set(1, "Apple");
+//     map.set(2, "Banana");
+
+//     std::cout << map.get(1) << std::endl;
+//     std::cout << map.get(2) << std::endl;
+// }
+// // Expected:
+// // Apple
+// // Banana
+
+
+// // Test Case 4: Get values after reHash()
+// {
+//     HashMap<int, int> map;
+
+//     for (int i = 1; i <= 20; i++)
+//     {
+//         map.set(i, i * 100);
+//     }
+
+//     std::cout << map.get(1) << std::endl;
+//     std::cout << map.get(10) << std::endl;
+//     std::cout << map.get(20) << std::endl;
+// }
+// // Expected:
+// // 100
+// // 1000
 // // 2000
 
+
+// // Test Case 5: Get a non-existing key
+// {
+//     HashMap<int, int> map;
+
+//     map.set(1, 100);
+
+//     try
+//     {
+//         std::cout << map.get(2) << std::endl;
+//     }
+//     catch (const std::invalid_argument& e)
+//     {
+//         std::cout << e.what() << std::endl;
+//     }
+// }
+// // Expected:
+// // key doesnot exist
+
+
 // =====================================================
-// ===== Method: get() =================================
+// ===== Method: remove() ==============================
 // =====================================================
 
-// Test Case 1: Get an existing key
+// Test Case 1: Remove one existing key
 {
     HashMap<int, int> map;
 
     map.set(10, 100);
 
-    std::cout << map.get(10) << std::endl;
+    map.remove(10);
+
+    std::cout << map.getSize() << std::endl;
 }
 // Expected:
-// 100
+// 0
 
 
-// Test Case 2: Get multiple existing keys
+// Test Case 2: Remove one key from multiple elements
 {
     HashMap<int, int> map;
 
@@ -516,32 +605,41 @@ int main(){
     map.set(2, 20);
     map.set(3, 30);
 
-    std::cout << map.get(1) << std::endl;
-    std::cout << map.get(2) << std::endl;
-    std::cout << map.get(3) << std::endl;
+    map.remove(2);
+
+    std::cout << map.exist(1) << std::endl;
+    std::cout << map.exist(2) << std::endl;
+    std::cout << map.exist(3) << std::endl;
+    std::cout << map.getSize() << std::endl;
 }
 // Expected:
-// 10
-// 20
-// 30
+// 1
+// 0
+// 1
+// 2
 
 
-// Test Case 3: Get string values
+// Test Case 3: Remove the first inserted key
 {
-    HashMap<int, std::string> map;
+    HashMap<int, int> map;
 
-    map.set(1, "Apple");
-    map.set(2, "Banana");
+    map.set(1, 100);
+    map.set(2, 200);
+    map.set(3, 300);
 
-    std::cout << map.get(1) << std::endl;
-    std::cout << map.get(2) << std::endl;
+    map.remove(1);
+
+    std::cout << map.exist(1) << std::endl;
+    std::cout << map.exist(2) << std::endl;
+    std::cout << map.exist(3) << std::endl;
 }
 // Expected:
-// Apple
-// Banana
+// 0
+// 1
+// 1
 
 
-// Test Case 4: Get values after reHash()
+// Test Case 4: Remove after reHash()
 {
     HashMap<int, int> map;
 
@@ -550,17 +648,17 @@ int main(){
         map.set(i, i * 100);
     }
 
-    std::cout << map.get(1) << std::endl;
-    std::cout << map.get(10) << std::endl;
-    std::cout << map.get(20) << std::endl;
+    map.remove(15);
+
+    std::cout << map.exist(15) << std::endl;
+    std::cout << map.getSize() << std::endl;
 }
 // Expected:
-// 100
-// 1000
-// 2000
+// 0
+// 19
 
 
-// Test Case 5: Get a non-existing key
+// Test Case 5: Remove a non-existing key
 {
     HashMap<int, int> map;
 
@@ -568,7 +666,7 @@ int main(){
 
     try
     {
-        std::cout << map.get(2) << std::endl;
+        map.remove(5);
     }
     catch (const std::invalid_argument& e)
     {
@@ -576,6 +674,6 @@ int main(){
     }
 }
 // Expected:
-// key doesnot exist
+// key did not exist
   return 0;
 }

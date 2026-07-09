@@ -185,6 +185,7 @@ void HashMap<K, V>::remove(const K &key)
     if (list.get(i).key == key)
     {
       list.removeAt(i);
+      --this->size;
       return;
     }
     ++i;
