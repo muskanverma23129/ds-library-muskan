@@ -1,4 +1,11 @@
 #include <stdexcept>
+// template<typename K,typename V>
+// static int HashMap<K,V>::validate(int capacity)
+// {
+//     if (capacity <= 0)
+//         throw std::invalid_argument("Invalid capacity");
+//     return capacity;
+// }
 template <typename K, typename V>
 HashMap<K, V>::HashMap() : size(0), capacity(8), buckets(8)
 {
@@ -8,7 +15,7 @@ HashMap<K, V>::HashMap() : size(0), capacity(8), buckets(8)
   }
 }
 template <typename K, typename V>
-HashMap<K, V>::HashMap(int capacity) : size(0), capacity(capacity), buckets(capacity)
+HashMap<K, V>::HashMap(int capacity) : size(0), capacity(validate(capacity)), buckets(capacity)
 {
   for (int i = 0; i < capacity; i++)
   {

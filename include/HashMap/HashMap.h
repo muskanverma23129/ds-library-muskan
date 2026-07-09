@@ -19,6 +19,12 @@ class HashMap{
     DynamicArray<LinkList<Pair>> buckets;
     
     public:
+   static int validate(int capacity)
+{
+    if (capacity <= 0)
+        throw std::invalid_argument("Invalid capacity");
+    return capacity;
+}
     HashMap();
     // HashMap(HashMap& other);
     HashMap(int capacity);
