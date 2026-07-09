@@ -579,47 +579,143 @@ int main(){
 // // key doesnot exist
 
 
+// // =====================================================
+// // ===== Method: remove() ==============================
+// // =====================================================
+
+// // Test Case 1: Remove one existing key
+// {
+//     HashMap<int, int> map;
+
+//     map.set(10, 100);
+
+//     map.remove(10);
+
+//     std::cout << map.getSize() << std::endl;
+// }
+// // Expected:
+// // 0
+
+
+// // Test Case 2: Remove one key from multiple elements
+// {
+//     HashMap<int, int> map;
+
+//     map.set(1, 10);
+//     map.set(2, 20);
+//     map.set(3, 30);
+
+//     map.remove(2);
+
+//     std::cout << map.exist(1) << std::endl;
+//     std::cout << map.exist(2) << std::endl;
+//     std::cout << map.exist(3) << std::endl;
+//     std::cout << map.getSize() << std::endl;
+// }
+// // Expected:
+// // 1
+// // 0
+// // 1
+// // 2
+
+
+// // Test Case 3: Remove the first inserted key
+// {
+//     HashMap<int, int> map;
+
+//     map.set(1, 100);
+//     map.set(2, 200);
+//     map.set(3, 300);
+
+//     map.remove(1);
+
+//     std::cout << map.exist(1) << std::endl;
+//     std::cout << map.exist(2) << std::endl;
+//     std::cout << map.exist(3) << std::endl;
+// }
+// // Expected:
+// // 0
+// // 1
+// // 1
+
+
+// // Test Case 4: Remove after reHash()
+// {
+//     HashMap<int, int> map;
+
+//     for (int i = 1; i <= 20; i++)
+//     {
+//         map.set(i, i * 100);
+//     }
+
+//     map.remove(15);
+
+//     std::cout << map.exist(15) << std::endl;
+//     std::cout << map.getSize() << std::endl;
+// }
+// // Expected:
+// // 0
+// // 19
+
+
+// // Test Case 5: Remove a non-existing key
+// {
+//     HashMap<int, int> map;
+
+//     map.set(1, 100);
+
+//     try
+//     {
+//         map.remove(5);
+//     }
+//     catch (const std::invalid_argument& e)
+//     {
+//         std::cout << e.what() << std::endl;
+//     }
+// }
+// Expected:
+// key did not exist
+
+
+
 // =====================================================
-// ===== Method: remove() ==============================
+// ===== Method: print() ===============================
 // =====================================================
 
-// Test Case 1: Remove one existing key
+// Test Case 1: Print an empty HashMap
+{
+    HashMap<int, int> map;
+
+    map.print();
+}
+// Expected:
+// 8 buckets should be printed.
+// Every bucket should display:
+// bucketX->Empty
+//
+// Example:
+// bucket1->Empty
+// bucket2->Empty
+// ...
+// bucket8->Empty
+
+
+// Test Case 2: Print one key-value pair
 {
     HashMap<int, int> map;
 
     map.set(10, 100);
 
-    map.remove(10);
-
-    std::cout << map.getSize() << std::endl;
+    map.print();
 }
 // Expected:
-// 0
+// One bucket contains:
+// (10,100)
+//
+// All other buckets are Empty.
 
 
-// Test Case 2: Remove one key from multiple elements
-{
-    HashMap<int, int> map;
-
-    map.set(1, 10);
-    map.set(2, 20);
-    map.set(3, 30);
-
-    map.remove(2);
-
-    std::cout << map.exist(1) << std::endl;
-    std::cout << map.exist(2) << std::endl;
-    std::cout << map.exist(3) << std::endl;
-    std::cout << map.getSize() << std::endl;
-}
-// Expected:
-// 1
-// 0
-// 1
-// 2
-
-
-// Test Case 3: Remove the first inserted key
+// Test Case 3: Print multiple key-value pairs
 {
     HashMap<int, int> map;
 
@@ -627,53 +723,55 @@ int main(){
     map.set(2, 200);
     map.set(3, 300);
 
-    map.remove(1);
-
-    std::cout << map.exist(1) << std::endl;
-    std::cout << map.exist(2) << std::endl;
-    std::cout << map.exist(3) << std::endl;
+    map.print();
 }
 // Expected:
-// 0
-// 1
-// 1
+// The output should contain:
+// (1,100)
+// (2,200)
+// (3,300)
+//
+// Bucket positions may vary.
 
 
-// Test Case 4: Remove after reHash()
+// Test Case 4: Print after updating an existing key
+{
+    HashMap<int, int> map;
+
+    map.set(5, 50);
+    map.set(5, 500);
+
+    map.print();
+}
+// Expected:
+// Only one pair should exist:
+// (5,500)
+//
+// There should NOT be:
+// (5,50)
+
+
+// Test Case 5: Print after reHash()
 {
     HashMap<int, int> map;
 
     for (int i = 1; i <= 20; i++)
     {
-        map.set(i, i * 100);
+        map.set(i, i * 10);
     }
 
-    map.remove(15);
-
-    std::cout << map.exist(15) << std::endl;
-    std::cout << map.getSize() << std::endl;
+    map.print();
 }
 // Expected:
-// 0
-// 19
-
-
-// Test Case 5: Remove a non-existing key
-{
-    HashMap<int, int> map;
-
-    map.set(1, 100);
-
-    try
-    {
-        map.remove(5);
-    }
-    catch (const std::invalid_argument& e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-}
-// Expected:
-// key did not exist
+// Capacity becomes 32 buckets.
+//
+// All 20 key-value pairs should appear exactly once:
+// (1,10)
+// (2,20)
+// ...
+// (20,200)
+//
+// No duplicates.
+// No missing elements.
   return 0;
 }
