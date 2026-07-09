@@ -406,25 +406,109 @@ int main(){
 
 
 
+// // =====================================================
+// // ===== Method: set() =================================
+// // =====================================================
+
+// // Test Case 1: Insert one key-value pair
+// {
+//     HashMap<int, int> map;
+
+//     map.set(10, 100);
+
+//     std::cout << map.get(10) << std::endl;
+//     std::cout << map.getSize() << std::endl;
+// }
+// // Expected:
+// // 100
+// // 1
+
+
+// // Test Case 2: Insert multiple key-value pairs
+// {
+//     HashMap<int, int> map;
+
+//     map.set(1, 10);
+//     map.set(2, 20);
+//     map.set(3, 30);
+
+//     std::cout << map.get(1) << std::endl;
+//     std::cout << map.get(2) << std::endl;
+//     std::cout << map.get(3) << std::endl;
+//     std::cout << map.getSize() << std::endl;
+// }
+// // Expected:
+// // 10
+// // 20
+// // 30
+// // 3
+
+
+// // Test Case 3: Insert duplicate key (should update value)
+// {
+//     HashMap<int, int> map;
+
+//     map.set(5, 50);
+//     map.set(5, 500);
+
+//     std::cout << map.get(5) << std::endl;
+//     std::cout << map.getSize() << std::endl;
+// }
+// // Expected:
+// // 500
+// // 1
+
+
+// // Test Case 4: Store string values
+// {
+//     HashMap<int, std::string> map;
+
+//     map.set(1, "Apple");
+//     map.set(2, "Banana");
+
+//     std::cout << map.get(1) << std::endl;
+//     std::cout << map.get(2) << std::endl;
+// }
+// // Expected:
+// // Apple
+// // Banana
+
+
+// // Test Case 5: Trigger reHash()
+// {
+//     HashMap<int, int> map;
+
+//     for (int i = 1; i <= 20; i++)
+//     {
+//         map.set(i, i * 100);
+//     }
+
+//     std::cout << map.getCapacity() << std::endl;
+//     std::cout << map.getSize() << std::endl;
+//     std::cout << map.get(20) << std::endl;
+// }
+// // Expected:
+// // 32
+// // 20
+// // 2000
+
 // =====================================================
-// ===== Method: set() =================================
+// ===== Method: get() =================================
 // =====================================================
 
-// Test Case 1: Insert one key-value pair
+// Test Case 1: Get an existing key
 {
     HashMap<int, int> map;
 
     map.set(10, 100);
 
     std::cout << map.get(10) << std::endl;
-    std::cout << map.getSize() << std::endl;
 }
 // Expected:
 // 100
-// 1
 
 
-// Test Case 2: Insert multiple key-value pairs
+// Test Case 2: Get multiple existing keys
 {
     HashMap<int, int> map;
 
@@ -435,31 +519,14 @@ int main(){
     std::cout << map.get(1) << std::endl;
     std::cout << map.get(2) << std::endl;
     std::cout << map.get(3) << std::endl;
-    std::cout << map.getSize() << std::endl;
 }
 // Expected:
 // 10
 // 20
 // 30
-// 3
 
 
-// Test Case 3: Insert duplicate key (should update value)
-{
-    HashMap<int, int> map;
-
-    map.set(5, 50);
-    map.set(5, 500);
-
-    std::cout << map.get(5) << std::endl;
-    std::cout << map.getSize() << std::endl;
-}
-// Expected:
-// 500
-// 1
-
-
-// Test Case 4: Store string values
+// Test Case 3: Get string values
 {
     HashMap<int, std::string> map;
 
@@ -474,7 +541,7 @@ int main(){
 // Banana
 
 
-// Test Case 5: Trigger reHash()
+// Test Case 4: Get values after reHash()
 {
     HashMap<int, int> map;
 
@@ -483,13 +550,32 @@ int main(){
         map.set(i, i * 100);
     }
 
-    std::cout << map.getCapacity() << std::endl;
-    std::cout << map.getSize() << std::endl;
+    std::cout << map.get(1) << std::endl;
+    std::cout << map.get(10) << std::endl;
     std::cout << map.get(20) << std::endl;
 }
 // Expected:
-// 32
-// 20
+// 100
+// 1000
 // 2000
+
+
+// Test Case 5: Get a non-existing key
+{
+    HashMap<int, int> map;
+
+    map.set(1, 100);
+
+    try
+    {
+        std::cout << map.get(2) << std::endl;
+    }
+    catch (const std::invalid_argument& e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+}
+// Expected:
+// key doesnot exist
   return 0;
 }
